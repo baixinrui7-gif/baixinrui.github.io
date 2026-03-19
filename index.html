@@ -39,19 +39,31 @@
             }
             .bg-grid {
                 background-image:
-                    linear-gradient(rgba(94, 234, 212, 0.04) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(94, 234, 212, 0.04) 1px, transparent 1px);
+                    linear-gradient(rgba(94, 234, 212, 0.035) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(234, 140, 58, 0.025) 1px, transparent 1px);
                 background-size: 48px 48px;
             }
             .glass {
                 backdrop-filter: blur(16px);
                 -webkit-backdrop-filter: blur(16px);
                 background: rgba(16, 18, 24, 0.72);
-                border: 1px solid rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow:
+                    0 0 0 1px rgba(234, 140, 58, 0.06),
+                    0 18px 70px rgba(0, 0, 0, 0.35);
             }
             .border-refined {
-                border: 1px solid rgba(94, 234, 212, 0.12);
-                box-shadow: 0 0 0 1px rgba(234, 140, 58, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.10);
+                box-shadow:
+                    0 0 0 1px rgba(94, 234, 212, 0.06),
+                    0 0 35px rgba(94, 234, 212, 0.06);
+            }
+            .border-refined:hover {
+                border-color: rgba(234, 140, 58, 0.22);
+                box-shadow:
+                    0 0 0 1px rgba(234, 140, 58, 0.16),
+                    0 0 55px rgba(94, 234, 212, 0.10),
+                    0 26px 90px rgba(0, 0, 0, 0.45);
             }
             .btn-primary {
                 background: linear-gradient(135deg, rgba(94, 234, 212, 0.15), rgba(234, 140, 58, 0.12));
@@ -61,6 +73,12 @@
         html.lang-en .i18n-zh { display: none !important; }
         html:not(.lang-en) .i18n-en { display: none !important; }
         #skill-graph canvas { display: block; width: 100%; height: 100%; outline: none; }
+        .magnetic { will-change: transform; transform: translate3d(0,0,0); }
+        .border-refined { will-change: transform, box-shadow, border-color; }
+        @media (prefers-reduced-motion: reduce) {
+            .magnetic { transform: none !important; }
+            #particles-bg { display: none !important; }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -125,19 +143,42 @@
                         <span class="px-3 py-1.5 rounded-full text-xs md:text-sm border border-white/10 bg-white/[0.03] text-white/70 tracking-wide"><span class="i18n-zh">AI项目 0-1</span><span class="i18n-en">AI projects from 0 to 1</span></span>
                     </div>
                     <div class="hero-reveal flex flex-wrap gap-4">
-                        <a href="#projects" class="btn-primary text-white font-medium px-8 py-3 rounded-lg transition hover:border-accent/50 text-sm md:text-base"><span class="i18n-zh">查看项目</span><span class="i18n-en">View projects</span></a>
-                        <a href="#contact" class="border border-white/15 text-white/85 font-medium px-8 py-3 rounded-lg hover:bg-white/[0.04] transition text-sm md:text-base"><span class="i18n-zh">联系我</span><span class="i18n-en">Contact</span></a>
+                        <a href="#projects" class="btn-primary text-white font-medium px-8 py-3 rounded-lg transition hover:border-accent/50 text-sm md:text-base magnetic"><span class="i18n-zh">查看项目</span><span class="i18n-en">View projects</span></a>
+                        <a href="#contact" class="border border-white/15 text-white/85 font-medium px-8 py-3 rounded-lg hover:bg-white/[0.04] transition text-sm md:text-base magnetic"><span class="i18n-zh">联系我</span><span class="i18n-en">Contact</span></a>
                     </div>
                 </div>
                 <div class="lg:w-[45%] flex justify-center order-1 lg:order-2">
-                    <div class="hero-photo relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64">
-                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-accent/15 opacity-80"></div>
-                        <div class="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-primary/40 via-transparent to-accent/40">
-                            <div class="w-full h-full rounded-full overflow-hidden bg-darkGray border border-white/[0.08]">
-                                <img src="images/avatar.jpg" alt="柏馨睿 Amber" class="w-full h-full object-cover" id="avatar-img" width="512" height="512">
+                    <div class="hero-photo relative flex flex-col items-center">
+                        <div class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-accent/15 opacity-80"></div>
+                            <div class="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-primary/40 via-transparent to-accent/40">
+                                <div class="w-full h-full rounded-full overflow-hidden bg-darkGray border border-white/[0.08]">
+                                    <img src="images/avatar.jpg" alt="柏馨睿 Amber" class="w-full h-full object-cover" id="avatar-img" width="512" height="512">
+                                </div>
+                            </div>
+                            <p id="avatar-fallback" class="hidden absolute inset-0 flex items-center justify-center text-center text-xs text-white/40 px-6 bg-darkGray rounded-full"><span class="i18n-zh">请将头像保存为 images/avatar.jpg</span><span class="i18n-en">Add images/avatar.jpg</span></p>
+                        </div>
+
+                        <div class="mt-6 w-full max-w-[420px] border-refined rounded-2xl bg-darkGray/35 px-5 py-4 sm:px-6 sm:py-5">
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <span class="text-xs uppercase tracking-[0.2em] text-accent/85"><span class="i18n-zh">核心三点</span><span class="i18n-en">3 Key Threads</span></span>
+                                <span class="text-xs text-white/45"><span class="i18n-zh">PC 优先排版</span><span class="i18n-en">PC-first layout</span></span>
+                            </div>
+                            <div class="space-y-2 text-sm text-white/70">
+                                <div class="flex items-center justify-between gap-3">
+                                    <span class="i18n-zh">3年央企项目经理</span><span class="i18n-en">3Y+ State-owned Enterprise PM</span>
+                                    <span class="text-accent/90 font-medium">01</span>
+                                </div>
+                                <div class="flex items-center justify-between gap-3">
+                                    <span class="i18n-zh">售后全业务域流程搭建</span><span class="i18n-en">End-to-end after-sales workflows</span>
+                                    <span class="text-primary/90 font-medium">02</span>
+                                </div>
+                                <div class="flex items-center justify-between gap-3">
+                                    <span class="i18n-zh">AI项目 0-1</span><span class="i18n-en">AI projects from 0 to 1</span>
+                                    <span class="text-white/50 font-medium">03</span>
+                                </div>
                             </div>
                         </div>
-                        <p id="avatar-fallback" class="hidden absolute inset-0 flex items-center justify-center text-center text-xs text-white/40 px-6 bg-darkGray rounded-full"><span class="i18n-zh">请将头像保存为 images/avatar.jpg</span><span class="i18n-en">Add images/avatar.jpg</span></p>
                     </div>
                 </div>
             </div>
@@ -173,51 +214,51 @@
                     <span class="i18n-zh">核心项目</span>
                     <span class="i18n-en">Key Projects</span>
                 </h2>
-                <p class="text-white/40 text-sm md:text-base font-light max-w-2xl">
+                <p class="text-white/40 text-base md:text-base font-light max-w-2xl">
                     <span class="i18n-zh">用三个主线呈现交付：3年央企项目经理、售后全业务域流程搭建、AI项目0-1（多 Agent 落地）。</span>
                     <span class="i18n-en">Three delivery threads: 3Y+ as a PM, end-to-end after-sales workflows, and AI projects from 0 to 1 (multi-agent delivery).</span>
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <article class="rounded-2xl overflow-hidden border-refined bg-darkGray/30 flex flex-col hover:border-primary/20 transition-colors duration-300">
+                <article class="rounded-2xl overflow-hidden border-refined bg-darkGray/30 flex flex-col hover:border-primary/20 transition-colors duration-300 transition-transform hover:-translate-y-0.5 hover:shadow-[0_22px_70px_rgba(0,0,0,0.45)]">
                     <div class="h-40 bg-gradient-to-br from-primary/10 to-transparent flex items-center justify-center border-b border-white/[0.05]"><i class="fa fa-sitemap text-primary/50 text-5xl"></i></div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex justify-between items-center mb-3 text-xs uppercase tracking-wider text-white/35">
+                        <div class="flex justify-between items-center mb-3 text-sm uppercase tracking-wider text-white/35">
                             <span class="text-primary/90">AI</span><span>2025–2026</span>
                         </div>
                         <h3 class="font-poppins text-lg font-medium text-white mb-3"><span class="i18n-zh">AI 售后服务系统</span><span class="i18n-en">AI After-sales System</span></h3>
-                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-zh">在售后全业务域流程搭建中引入多 Agent 能力：将订单查询、客户投诉、商品推荐等环节纳入可追踪、可迭代的流程，降低人工投入并提升响应效率。</p>
-                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-en">Applied multi-agent capabilities to end-to-end after-sales workflows: brought order lookup, customer complaints, and product recommendations into traceable and iterative flows—reducing human effort and improving response speed.</p>
+                        <p class="text-white/50 text-sm md:text-base leading-relaxed mb-6 flex-grow i18n-zh">在售后全业务域流程搭建中引入多 Agent 能力：将订单查询、客户投诉、商品推荐等环节纳入可追踪、可迭代的流程，降低人工投入并提升响应效率。</p>
+                        <p class="text-white/50 text-sm md:text-base leading-relaxed mb-6 flex-grow i18n-en">Applied multi-agent capabilities to end-to-end after-sales workflows: brought order lookup, customer complaints, and product recommendations into traceable and iterative flows—reducing human effort and improving response speed.</p>
                         <div class="flex justify-between items-center text-sm border-t border-white/[0.06] pt-4">
                             <span class="text-accent/90"><span class="i18n-zh">售后全业务域流程搭建</span><span class="i18n-en">End-to-end after-sales workflows</span></span>
                             <a href="#" class="text-primary/90 hover:text-primary text-sm tracking-wide project-link"><span class="i18n-zh">详情</span><span class="i18n-en">Details</span> →</a>
                         </div>
                     </div>
                 </article>
-                <article class="rounded-2xl overflow-hidden border-refined bg-darkGray/30 flex flex-col hover:border-accent/25 transition-colors duration-300">
+                <article class="rounded-2xl overflow-hidden border-refined bg-darkGray/30 flex flex-col hover:border-accent/25 transition-colors duration-300 transition-transform hover:-translate-y-0.5 hover:shadow-[0_22px_70px_rgba(0,0,0,0.45)]">
                     <div class="h-40 bg-gradient-to-br from-accent/10 to-transparent flex items-center justify-center border-b border-white/[0.05]"><i class="fa fa-pencil text-accent/50 text-5xl"></i></div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex justify-between items-center mb-3 text-xs uppercase tracking-wider text-white/35">
+                        <div class="flex justify-between items-center mb-3 text-sm uppercase tracking-wider text-white/35">
                             <span class="text-accent/90">AIGC</span><span>2025–2026</span>
                         </div>
                         <h3 class="font-poppins text-lg font-medium text-white mb-3"><span class="i18n-zh">自媒体 AI GC 系统</span><span class="i18n-en">Media AI GC System</span></h3>
-                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-zh">AI项目 0-1 落地：从选题到脚本、知识库管理与反馈迭代，设计多 Agent 工作流（选题生成 Agent + 脚本创作 Agent + 知识库管理 Agent），并将热点驱动的内容链路产品化，生产效率提升 78%。</p>
-                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-en">AI project from 0 to 1: designed multi-agent workflows from ideation to script creation, knowledge-base management, and feedback iteration (topic agent + script agent + knowledge base agent). Productized the hot-topic content pipeline, improving production efficiency by 78%.</p>
+                        <p class="text-white/50 text-sm md:text-base leading-relaxed mb-6 flex-grow i18n-zh">AI项目 0-1 落地：从选题到脚本、知识库管理与反馈迭代，设计多 Agent 工作流（选题生成 Agent + 脚本创作 Agent + 知识库管理 Agent），并将热点驱动的内容链路产品化，生产效率提升 78%。</p>
+                        <p class="text-white/50 text-sm md:text-base leading-relaxed mb-6 flex-grow i18n-en">AI project from 0 to 1: designed multi-agent workflows from ideation to script creation, knowledge-base management, and feedback iteration (topic agent + script agent + knowledge base agent). Productized the hot-topic content pipeline, improving production efficiency by 78%.</p>
                         <div class="flex justify-between items-center text-sm border-t border-white/[0.06] pt-4">
                             <span class="text-accent/90">+78%</span>
                             <a href="#" class="text-primary/90 hover:text-primary text-sm tracking-wide project-link"><span class="i18n-zh">详情</span><span class="i18n-en">Details</span> →</a>
                         </div>
                     </div>
                 </article>
-                <article class="rounded-2xl overflow-hidden border-refined bg-darkGray/30 flex flex-col md:col-span-2 lg:col-span-1 hover:border-primary/20 transition-colors duration-300">
+                <article class="rounded-2xl overflow-hidden border-refined bg-darkGray/30 flex flex-col md:col-span-2 lg:col-span-1 hover:border-primary/20 transition-colors duration-300 transition-transform hover:-translate-y-0.5 hover:shadow-[0_22px_70px_rgba(0,0,0,0.45)]">
                     <div class="h-40 bg-gradient-to-br from-secondary/20 to-transparent flex items-center justify-center border-b border-white/[0.05]"><i class="fa fa-database text-secondary/60 text-5xl"></i></div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex justify-between items-center mb-3 text-xs uppercase tracking-wider text-white/35">
+                        <div class="flex justify-between items-center mb-3 text-sm uppercase tracking-wider text-white/35">
                             <span class="text-white/50">System</span><span>2023–2026</span>
                         </div>
                         <h3 class="font-poppins text-lg font-medium text-white mb-3"><span class="i18n-zh">售后服务信息系统</span><span class="i18n-en">After-sales Information System</span></h3>
-                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-zh">售后全业务域流程搭建的核心交付：打通用户信息→设计更改→质量改进的全流程闭环；独立搭建售后服务流程与管理文件，融合质量/风险/合规要求形成流程体系，达成 AOS（流程体系全生命周期建设）铜牌标准；完成审查上线并多轮迭代，形成可持续运营的业务资产。</p>
-                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-en">The core delivery for end-to-end after-sales workflows: built a full closed loop from user data → design changes → quality improvement. Independently built after-sales processes and management documents across business domains, integrating quality/risk/compliance requirements to form the process system and achieve AOS Bronze (process lifecycle building). Launched through review and iterated multiple times, creating sustainable operational business assets.</p>
+                        <p class="text-white/50 text-sm md:text-base leading-relaxed mb-6 flex-grow i18n-zh">售后全业务域流程搭建的核心交付：打通用户信息→设计更改→质量改进的全流程闭环；独立搭建售后服务流程与管理文件，融合质量/风险/合规要求形成流程体系，达成 AOS（流程体系全生命周期建设）铜牌标准；完成审查上线并多轮迭代，形成可持续运营的业务资产。</p>
+                        <p class="text-white/50 text-sm md:text-base leading-relaxed mb-6 flex-grow i18n-en">The core delivery for end-to-end after-sales workflows: built a full closed loop from user data → design changes → quality improvement. Independently built after-sales processes and management documents across business domains, integrating quality/risk/compliance requirements to form the process system and achieve AOS Bronze (process lifecycle building). Launched through review and iterated multiple times, creating sustainable operational business assets.</p>
                         <div class="flex justify-between items-center text-sm border-t border-white/[0.06] pt-4">
                             <span class="text-primary/80">AOS</span>
                             <a href="#" class="text-primary/90 hover:text-primary text-sm tracking-wide project-link"><span class="i18n-zh">详情</span><span class="i18n-en">Details</span> →</a>
@@ -355,7 +396,7 @@
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 max-w-4xl mx-auto">
-                <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 text-center flex flex-col items-center">
+                <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 text-center flex flex-col items-center transition-transform hover:-translate-y-0.5 hover:shadow-[0_18px_60px_rgba(0,0,0,0.45)]">
                     <p class="text-xs uppercase tracking-[0.2em] text-white/35 mb-4"><span class="i18n-zh">微信</span><span class="i18n-en">WeChat</span></p>
                     <div class="w-40 h-40 sm:w-44 sm:h-44 rounded-xl border border-white/10 overflow-hidden bg-darkGray flex items-center justify-center mb-3">
                         <img src="images/wechat-qr.png" alt="WeChat QR" class="max-w-full max-h-full object-contain hidden" id="wechat-qr-img">
@@ -363,13 +404,13 @@
                         <span id="wechat-placeholder-en" class="text-white/30 text-xs px-4 i18n-en">Add images/wechat-qr.png</span>
                     </div>
                 </div>
-                <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 flex flex-col justify-center">
+                <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 flex flex-col justify-center transition-transform hover:-translate-y-0.5 hover:shadow-[0_18px_60px_rgba(0,0,0,0.45)]">
                     <p class="text-xs uppercase tracking-[0.2em] text-white/35 mb-3"><span class="i18n-zh">电话</span><span class="i18n-en">Phone</span></p>
                     <a href="tel:+8610000000000" id="phone-link" class="text-xl md:text-2xl font-poppins text-white/90 hover:text-accent transition-colors break-all">+86 请替换</a>
                     <p class="text-white/30 text-xs mt-3 i18n-zh">在页面底部脚本中修改 PHONE_DISPLAY 与 PHONE_TEL</p>
                     <p class="text-white/30 text-xs mt-3 i18n-en">Edit PHONE_DISPLAY & PHONE_TEL in the script</p>
                 </div>
-                <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 flex flex-col justify-center">
+                <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 flex flex-col justify-center transition-transform hover:-translate-y-0.5 hover:shadow-[0_18px_60px_rgba(0,0,0,0.45)]">
                     <p class="text-xs uppercase tracking-[0.2em] text-white/35 mb-3"><span class="i18n-zh">邮箱</span><span class="i18n-en">Email</span></p>
                     <a href="mailto:your@email.com" id="email-link" class="text-lg md:text-xl text-primary/90 hover:text-primary break-all">your@email.com</a>
                     <p class="text-white/30 text-xs mt-3 i18n-zh">在脚本中修改 CONTACT_EMAIL</p>
@@ -391,6 +432,51 @@
         const CONTACT_EMAIL = 'baixinrui1017@163.com';
         const PHONE_DISPLAY = '+86 15513681017';
         const PHONE_TEL = '+8615513681017';
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Magnetic hover + subtle parallax (premium micro-interactions)
+        if (!prefersReducedMotion) {
+            const magneticEls = document.querySelectorAll('.magnetic');
+            magneticEls.forEach(el => {
+                let raf = 0;
+                const strength = 9; // keep it subtle
+                const scale = 1.015;
+                const reset = () => {
+                    cancelAnimationFrame(raf);
+                    el.style.transform = 'translate3d(0,0,0) scale(1)';
+                    el.style.transition = 'transform 180ms ease';
+                };
+                el.style.transition = 'transform 180ms ease';
+                el.addEventListener('pointerenter', () => {
+                    el.style.transition = 'transform 80ms ease';
+                });
+                el.addEventListener('pointermove', (e) => {
+                    if (raf) cancelAnimationFrame(raf);
+                    raf = requestAnimationFrame(() => {
+                        const rect = el.getBoundingClientRect();
+                        const cx = rect.left + rect.width / 2;
+                        const cy = rect.top + rect.height / 2;
+                        const dx = (e.clientX - cx) / rect.width;
+                        const dy = (e.clientY - cy) / rect.height;
+                        const x = dx * strength;
+                        const y = dy * strength;
+                        el.style.transform = `translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0) scale(${scale})`;
+                    });
+                });
+                el.addEventListener('pointerleave', reset);
+            });
+
+            const grids = document.querySelectorAll('.bg-grid');
+            let rafGrid = 0;
+            window.addEventListener('mousemove', (e) => {
+                if (rafGrid) cancelAnimationFrame(rafGrid);
+                rafGrid = requestAnimationFrame(() => {
+                    const x = (e.clientX / window.innerWidth - 0.5) * 10; // px
+                    const y = (e.clientY / window.innerHeight - 0.5) * 8;  // px
+                    grids.forEach(g => g.style.transform = `translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0)`);
+                });
+            }, { passive: true });
+        }
 
         document.getElementById('email-link').href = 'mailto:' + CONTACT_EMAIL;
         document.getElementById('email-link').textContent = CONTACT_EMAIL;
@@ -488,7 +574,9 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
         }
-        initParticles();
+        if (!prefersReducedMotion) {
+            initParticles();
+        }
 
         var chartColors = {
             c1: 'rgba(94, 234, 212, 0.75)',
@@ -588,11 +676,17 @@
                 meshes.push(m);
             }
 
-            var lineMat = new THREE.LineBasicMaterial({
+            var lineMatDim = new THREE.LineBasicMaterial({
                 color: 0x5eead4,
                 transparent: true,
-                opacity: 0.22
+                opacity: 0.08
             });
+            var lineMatHi = new THREE.LineBasicMaterial({
+                color: 0x5eead4,
+                transparent: true,
+                opacity: 0.62
+            });
+            var lines = [];
             for (var a = 0; a < meshes.length; a++) {
                 for (var b = a + 1; b < meshes.length; b++) {
                     var da = meshes[a].position;
@@ -600,7 +694,11 @@
                     var dist = da.distanceTo(db);
                     if (dist < 1.55) {
                         var geo = new THREE.BufferGeometry().setFromPoints([da.clone(), db.clone()]);
-                        group.add(new THREE.Line(geo, lineMat));
+                        var line = new THREE.Line(geo, lineMatDim);
+                        line.userData.a = a;
+                        line.userData.b = b;
+                        group.add(line);
+                        lines.push(line);
                     }
                 }
             }
@@ -608,8 +706,24 @@
             var raycaster = new THREE.Raycaster();
             var pointer = new THREE.Vector2();
             var hovered = null;
+            var selected = null;
+            var activeLinesIdx = null;
             var dragging = false;
             var prevX = 0, prevY = 0;
+
+            function setLinesActive() {
+                var idx = selected !== null ? selected : hovered;
+                if (idx === activeLinesIdx) return;
+                activeLinesIdx = idx;
+                for (var i = 0; i < lines.length; i++) {
+                    var line = lines[i];
+                    if (idx !== null && (line.userData.a === idx || line.userData.b === idx)) {
+                        line.material = lineMatHi;
+                    } else {
+                        line.material = lineMatDim;
+                    }
+                }
+            }
 
             function resize() {
                 var w = holder.clientWidth;
@@ -633,25 +747,25 @@
                     group.rotation.x = Math.max(-0.65, Math.min(0.65, group.rotation.x));
                     prevX = e.clientX;
                     prevY = e.clientY;
+                    return;
                 }
                 raycaster.setFromCamera(pointer, camera);
                 var hits = raycaster.intersectObjects(meshes);
                 if (hits.length > 0) {
                     var idx = hits[0].object.userData.index;
                     if (hovered !== idx) {
-                        if (hovered !== null) meshes[hovered].material = meshes[hovered].userData.idleMat;
                         hovered = idx;
-                        meshes[hovered].material = sphereMatHi;
                         var sn = skillNodes[idx];
                         tooltip.innerHTML = '<span class="text-primary/90">' + sn.zh + '</span><br><span class="text-white/50 text-[11px] mt-1 block">' + sn.en + '</span>';
                         tooltip.classList.remove('hidden');
+                        setLinesActive();
                     }
                     tooltip.style.left = (e.clientX + 14) + 'px';
                     tooltip.style.top = (e.clientY + 14) + 'px';
                 } else {
                     if (hovered !== null) {
-                        meshes[hovered].material = meshes[hovered].userData.idleMat;
                         hovered = null;
+                        setLinesActive();
                     }
                     tooltip.classList.add('hidden');
                 }
@@ -661,20 +775,52 @@
                 dragging = true;
                 prevX = e.clientX;
                 prevY = e.clientY;
+                var rect = renderer.domElement.getBoundingClientRect();
+                pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+                pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+                raycaster.setFromCamera(pointer, camera);
+                var hits = raycaster.intersectObjects(meshes);
+                if (hits.length > 0) {
+                    var idx = hits[0].object.userData.index;
+                    selected = selected === idx ? null : idx;
+                    hovered = selected;
+                    if (selected !== null) {
+                        var sn = skillNodes[selected];
+                        tooltip.innerHTML = '<span class="text-primary/90">' + sn.zh + '</span><br><span class="text-white/50 text-[11px] mt-1 block">' + sn.en + '</span>';
+                        tooltip.classList.remove('hidden');
+                        tooltip.style.left = (e.clientX + 14) + 'px';
+                        tooltip.style.top = (e.clientY + 14) + 'px';
+                    }
+                } else {
+                    selected = null;
+                    hovered = null;
+                    tooltip.classList.add('hidden');
+                }
+                setLinesActive();
             });
             holder.addEventListener('pointerup', function () { dragging = false; });
             holder.addEventListener('pointerleave', function () {
                 dragging = false;
                 tooltip.classList.add('hidden');
-                if (hovered !== null) {
-                    meshes[hovered].material = meshes[hovered].userData.idleMat;
-                    hovered = null;
-                }
+                hovered = null;
+                setLinesActive();
             });
 
             function animate() {
                 requestAnimationFrame(animate);
                 if (!dragging) group.rotation.y += 0.0012;
+                var activeIdx = selected !== null ? selected : hovered;
+                var now = Date.now();
+                var pulse = selected !== null ? (1 + 0.05 * Math.sin(now / 180)) : 1;
+                for (var i = 0; i < meshes.length; i++) {
+                    if (activeIdx !== null && i === activeIdx) {
+                        meshes[i].material = sphereMatHi;
+                        meshes[i].scale.setScalar(1.12 * pulse);
+                    } else {
+                        meshes[i].material = meshes[i].userData.idleMat;
+                        meshes[i].scale.setScalar(1);
+                    }
+                }
                 renderer.render(scene, camera);
             }
             animate();
@@ -694,8 +840,10 @@
             gsap.from(sel + ' .border-refined, ' + sel + ' article', {
                 scrollTrigger: { trigger: sel, start: 'top 88%', toggleActions: 'play none none none' },
                 opacity: 0,
-                y: 16,
-                duration: 0.55,
+                y: 22,
+                scale: 0.985,
+                filter: 'blur(12px)',
+                duration: 0.62,
                 stagger: 0.06,
                 ease: 'power2.out'
             });
