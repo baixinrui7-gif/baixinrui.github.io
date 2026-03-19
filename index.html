@@ -1,52 +1,35 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI产品经理 | 科技感个人网站</title>
-    <!-- Tailwind CSS -->
+    <title>amber个人网站 | Amber — AI Product Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
-    <!-- Three.js -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-    <!-- GSAP 动画库 -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#00D4FF',
-                        secondary: '#7928CA',
-                        accent: '#FF4ECD',
-                        dark: '#0A0A0A',
-                        darkGray: '#1A1A1A',
-                        lightGray: '#2A2A2A'
+                        primary: '#5EEAD4',
+                        secondary: '#64748B',
+                        accent: '#EA8C3A',
+                        dark: '#07080B',
+                        darkGray: '#101218',
+                        lightGray: '#1A1D26'
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
                         poppins: ['Poppins', 'sans-serif']
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite'
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' }
-                        }
                     }
                 }
             }
         }
     </script>
-    
     <style type="text/tailwindcss">
         @layer utilities {
             .text-gradient {
@@ -55,477 +38,301 @@
                 -webkit-text-fill-color: transparent;
             }
             .bg-grid {
-                background-image: 
-                    linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
-                background-size: 20px 20px;
+                background-image:
+                    linear-gradient(rgba(94, 234, 212, 0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(94, 234, 212, 0.04) 1px, transparent 1px);
+                background-size: 48px 48px;
             }
             .glass {
-                backdrop-filter: blur(10px);
-                background-color: rgba(26, 26, 26, 0.8);
-                border: 1px solid rgba(0, 212, 255, 0.2);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                background: rgba(16, 18, 24, 0.72);
+                border: 1px solid rgba(255, 255, 255, 0.06);
             }
-            .neon-glow {
-                box-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3);
+            .border-refined {
+                border: 1px solid rgba(94, 234, 212, 0.12);
+                box-shadow: 0 0 0 1px rgba(234, 140, 58, 0.06);
             }
-            .neon-border {
-                border: 1px solid rgba(0, 212, 255, 0.5);
-                box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            .btn-primary {
+                background: linear-gradient(135deg, rgba(94, 234, 212, 0.15), rgba(234, 140, 58, 0.12));
+                border: 1px solid rgba(234, 140, 58, 0.35);
             }
         }
+        html.lang-en .i18n-zh { display: none !important; }
+        html:not(.lang-en) .i18n-en { display: none !important; }
+        #skill-graph canvas { display: block; width: 100%; height: 100%; outline: none; }
     </style>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="font-inter bg-dark text-white overflow-x-hidden">
-    <!-- 粒子背景 -->
-    <div id="particles-bg" class="fixed top-0 left-0 w-full h-full z-0"></div>
-    
-    <!-- 导航栏 -->
-    <nav class="fixed top-0 left-0 right-0 z-50 glass">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-poppins font-bold">
-                <span class="text-primary">AI</span><span class="text-white">PM</span>
+<body class="font-inter bg-dark text-white overflow-x-hidden antialiased">
+    <div id="particles-bg" class="fixed inset-0 z-0 pointer-events-none opacity-40"></div>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/[0.06]">
+        <div class="container mx-auto px-4 sm:px-6 py-3 md:py-4 flex justify-between items-center">
+            <a href="#hero" class="font-poppins font-semibold text-lg tracking-tight group">
+                <span class="text-accent">amber</span><span class="text-white/90">.site</span>
+            </a>
+            <div class="hidden lg:flex items-center gap-10 text-sm">
+                <a href="#hero" class="text-white/70 hover:text-primary transition-colors tracking-wide nav-desktop"><span class="i18n-zh">首页</span><span class="i18n-en">Home</span></a>
+                <a href="#about" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">关于</span><span class="i18n-en">About</span></a>
+                <a href="#projects" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">项目</span><span class="i18n-en">Projects</span></a>
+                <a href="#skills" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">技能</span><span class="i18n-en">Skills</span></a>
+                <a href="#docs" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">文档</span><span class="i18n-en">Documents</span></a>
+                <a href="#contact" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">联系</span><span class="i18n-en">Contact</span></a>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#hero" class="font-medium hover:text-primary transition-colors">首页</a>
-                <a href="#skills" class="font-medium hover:text-primary transition-colors">技能</a>
-                <a href="#projects" class="font-medium hover:text-primary transition-colors">项目</a>
-                <a href="#docs" class="font-medium hover:text-primary transition-colors">文档</a>
-                <a href="#contact" class="font-medium hover:text-primary transition-colors">联系</a>
-            </div>
-            <div class="md:hidden">
-                <button class="text-white focus:outline-none">
-                    <i class="fa fa-bars text-xl"></i>
+            <div class="flex items-center gap-3">
+                <button type="button" id="lang-toggle" class="text-xs uppercase tracking-[0.2em] px-3 py-1.5 rounded-md border border-white/10 text-white/60 hover:text-accent hover:border-accent/40 transition-colors" aria-label="Switch language">中 / EN</button>
+                <button type="button" id="nav-open" class="lg:hidden text-white/80 p-2 rounded-md border border-white/10 hover:bg-white/5" aria-expanded="false" aria-controls="mobile-panel">
+                    <i class="fa fa-bars text-lg"></i>
                 </button>
+            </div>
+        </div>
+        <div id="mobile-panel" class="lg:hidden hidden border-t border-white/[0.06] glass">
+            <div class="container mx-auto px-4 py-4 flex flex-col gap-1">
+                <a href="#hero" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">首页</span><span class="i18n-en">Home</span></a>
+                <a href="#about" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">关于</span><span class="i18n-en">About</span></a>
+                <a href="#projects" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">项目</span><span class="i18n-en">Projects</span></a>
+                <a href="#skills" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">技能</span><span class="i18n-en">Skills</span></a>
+                <a href="#docs" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">文档</span><span class="i18n-en">Documents</span></a>
+                <a href="#contact" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">联系</span><span class="i18n-en">Contact</span></a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-grid z-0"></div>
-        <div class="container mx-auto px-4 z-10 py-20">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="font-poppins font-bold text-5xl md:text-7xl mb-6">
-                        <span class="block">AI产品</span>
-                        <span class="bg-gradient-to-r from-primary to-accent text-gradient text-6xl md:text-8xl">策略专家</span>
+    <section id="hero" class="min-h-screen flex flex-col justify-center relative pt-24 pb-16 md:pt-28">
+        <div class="absolute inset-0 bg-grid z-0 pointer-events-none"></div>
+        <div class="container mx-auto px-4 sm:px-6 z-10 relative">
+            <div class="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-16">
+                <div class="lg:w-[55%] order-2 lg:order-1">
+                    <div class="hero-line h-px w-16 md:w-24 bg-gradient-to-r from-accent/80 to-primary/60 mb-8 origin-left"></div>
+                    <p class="hero-reveal text-accent/90 text-xs md:text-sm tracking-[0.35em] uppercase mb-4 font-medium">AI Product Manager</p>
+                    <h1 class="hero-reveal font-poppins font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-[3.25rem] leading-tight mb-2">
+                        <span class="i18n-zh text-white">AI 产品经理</span>
+                        <span class="i18n-en text-white">AI Product Manager</span>
                     </h1>
-                    <p class="text-xl text-gray-300 mb-8 max-w-lg">
-                        专注于AI系统设计、项目管理和流程优化，帮助企业实现数字化转型和业务增长。
+                    <p class="hero-reveal text-2xl md:text-3xl font-light text-white/50 mb-6 font-poppins">
+                        <span class="text-white/80">柏馨睿</span>
+                        <span class="mx-2 text-white/30">/</span>
+                        <span class="text-accent">Amber</span>
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#projects" class="bg-gradient-to-r from-primary to-secondary text-white font-medium px-8 py-3 rounded-lg hover:opacity-90 transition-opacity neon-glow">
-                            查看项目
-                        </a>
-                        <a href="#contact" class="bg-transparent border border-primary text-primary font-medium px-8 py-3 rounded-lg hover:bg-primary/10 transition-colors">
-                            联系我
-                        </a>
+                    <p class="hero-reveal text-white/55 text-base md:text-lg leading-relaxed max-w-xl mb-10 font-light">
+                        <span class="i18n-zh">聚焦 To B 场景下的 AI 系统设计与落地，串联需求、研发与流程，推动可度量的业务结果。</span>
+                        <span class="i18n-en">To B–focused AI systems: connecting requirements, engineering, and process to deliver measurable outcomes.</span>
+                    </p>
+                    <div class="hero-reveal flex flex-wrap gap-2.5 mb-10">
+                        <span class="px-3 py-1.5 rounded-full text-xs md:text-sm border border-primary/25 bg-primary/5 text-primary/90 tracking-wide"><span class="i18n-zh">3年央企项目经理</span><span class="i18n-en">3Y+ State-owned Enterprise PM</span></span>
+                        <span class="px-3 py-1.5 rounded-full text-xs md:text-sm border border-accent/30 bg-accent/5 text-accent/90 tracking-wide"><span class="i18n-zh">售后全业务域流程搭建</span><span class="i18n-en">End-to-end after-sales workflows</span></span>
+                        <span class="px-3 py-1.5 rounded-full text-xs md:text-sm border border-white/10 bg-white/[0.03] text-white/70 tracking-wide"><span class="i18n-zh">AI项目 0-1</span><span class="i18n-en">AI projects from 0 to 1</span></span>
                     </div>
-                    <!-- 核心优势标签 -->
-                    <div class="mt-12 flex flex-wrap gap-3">
-                        <div class="bg-lightGray/50 px-4 py-2 rounded-lg border border-primary/30">
-                            <span class="text-primary font-medium">AI系统设计</span>
-                        </div>
-                        <div class="bg-lightGray/50 px-4 py-2 rounded-lg border border-primary/30">
-                            <span class="text-primary font-medium">项目管理</span>
-                        </div>
-                        <div class="bg-lightGray/50 px-4 py-2 rounded-lg border border-primary/30">
-                            <span class="text-primary font-medium">流程优化</span>
-                        </div>
-                        <div class="bg-lightGray/50 px-4 py-2 rounded-lg border border-primary/30">
-                            <span class="text-primary font-medium">AOS认证</span>
-                        </div>
+                    <div class="hero-reveal flex flex-wrap gap-4">
+                        <a href="#projects" class="btn-primary text-white font-medium px-8 py-3 rounded-lg transition hover:border-accent/50 text-sm md:text-base"><span class="i18n-zh">查看项目</span><span class="i18n-en">View projects</span></a>
+                        <a href="#contact" class="border border-white/15 text-white/85 font-medium px-8 py-3 rounded-lg hover:bg-white/[0.04] transition text-sm md:text-base"><span class="i18n-zh">联系我</span><span class="i18n-en">Contact</span></a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative">
-                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center animate-float">
-                            <div class="w-56 h-56 md:w-72 md:h-72 rounded-full bg-darkGray flex items-center justify-center neon-border">
-                                <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=futuristic%20AI%20product%20manager%20portrait%2C%20tech%20background%2C%20neon%20lights%2C%20professional%20pose&image_size=square" alt="个人形象照" class="w-full h-full object-cover rounded-full">
+                <div class="lg:w-[45%] flex justify-center order-1 lg:order-2">
+                    <div class="hero-photo relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64">
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-accent/15 opacity-80"></div>
+                        <div class="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-primary/40 via-transparent to-accent/40">
+                            <div class="w-full h-full rounded-full overflow-hidden bg-darkGray border border-white/[0.08]">
+                                <img src="images/avatar.jpg" alt="柏馨睿 Amber" class="w-full h-full object-cover" id="avatar-img" width="512" height="512">
                             </div>
                         </div>
-                        <!-- 装饰元素 -->
-                        <div class="absolute -top-10 -right-10 w-20 h-20 bg-accent/30 rounded-full blur-xl"></div>
-                        <div class="absolute -bottom-10 -left-10 w-20 h-20 bg-primary/30 rounded-full blur-xl"></div>
+                        <p id="avatar-fallback" class="hidden absolute inset-0 flex items-center justify-center text-center text-xs text-white/40 px-6 bg-darkGray rounded-full"><span class="i18n-zh">请将头像保存为 images/avatar.jpg</span><span class="i18n-en">Add images/avatar.jpg</span></p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
-            <a href="#skills" class="flex flex-col items-center text-gray-400 hover:text-primary transition-colors">
-                <span class="mb-2">向下滚动</span>
-                <i class="fa fa-chevron-down animate-bounce"></i>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hero-reveal opacity-0">
+            <a href="#about" class="flex flex-col items-center text-white/35 hover:text-primary/80 transition-colors text-xs tracking-[0.25em] uppercase">
+                <span class="mb-2"><span class="i18n-zh">滚动</span><span class="i18n-en">Scroll</span></span>
+                <i class="fa fa-angle-down opacity-60"></i>
             </a>
         </div>
     </section>
 
-    <!-- 技能矩阵 -->
-    <section id="skills" class="py-20 relative">
-        <div class="absolute inset-0 bg-grid z-0"></div>
-        <div class="container mx-auto px-4 z-10">
-            <div class="text-center mb-16">
-                <h2 class="font-poppins font-bold text-4xl md:text-5xl mb-4">
-                    <span class="bg-gradient-to-r from-primary to-accent text-gradient">核心技能</span>
+    <section id="about" class="py-20 md:py-28 relative border-t border-white/[0.04]">
+        <div class="absolute inset-0 bg-grid z-0 pointer-events-none opacity-50"></div>
+        <div class="container mx-auto px-4 sm:px-6 z-10 relative max-w-3xl">
+            <h2 class="font-poppins text-3xl md:text-4xl font-semibold mb-2 text-white">
+                <span class="i18n-zh">关于我</span>
+                <span class="i18n-en">About</span>
+            </h2>
+            <p class="text-xs uppercase tracking-[0.3em] text-accent/80 mb-8">Profile</p>
+            <div class="space-y-6 text-white/60 leading-relaxed font-light text-base md:text-lg border-refined rounded-2xl p-8 md:p-10 bg-darkGray/40">
+                <p class="i18n-zh">3年央企项目经理经历：在中航工业集团雷华电子技术研究所负责某型号雷达全寿命周期售后项目管理。围绕“售后全业务域流程搭建”，打通用户信息→设计更改→质量改进的闭环，并融合质量/风险/合规要求构建流程体系，达成 AOS（流程体系全生命周期建设）铜牌标准；同时完成售后服务信息系统审查上线并多轮迭代。并在“AI项目 0-1”上从 0 到 1 搭建多 Agent 自媒体 AIGC/AI GC 系统，生产效率提升 78%。</p>
+                <p class="i18n-en">3Y+ as a State-owned Enterprise PM: at AVIC Rayhua Electronics, managed the full life-cycle after-sales program for a radar model. For “end-to-end after-sales workflows”, built a closed loop from user data → design changes → quality improvement, and integrated quality/risk/compliance requirements into the process system, achieving AOS Bronze (process lifecycle building). Also launched the after-sales information system via review and iterated based on usage needs. For “AI projects from 0 to 1”, built a multi-agent media AIGC/AI GC system from scratch, improving production efficiency by 78%.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 md:py-28 relative">
+        <div class="absolute inset-0 bg-grid z-0 pointer-events-none opacity-40"></div>
+        <div class="container mx-auto px-4 sm:px-6 z-10 relative">
+            <div class="mb-14 md:mb-16">
+                <h2 class="font-poppins text-3xl md:text-4xl font-semibold text-white mb-2">
+                    <span class="i18n-zh">核心项目</span>
+                    <span class="i18n-en">Key Projects</span>
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    我的专业技能矩阵，展示了在AI产品领域的核心能力
+                <p class="text-white/40 text-sm md:text-base font-light max-w-2xl">
+                    <span class="i18n-zh">用三个主线呈现交付：3年央企项目经理、售后全业务域流程搭建、AI项目0-1（多 Agent 落地）。</span>
+                    <span class="i18n-en">Three delivery threads: 3Y+ as a PM, end-to-end after-sales workflows, and AI projects from 0 to 1 (multi-agent delivery).</span>
                 </p>
             </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <!-- 技能雷达图 -->
-                <div class="glass rounded-2xl p-6 neon-border">
-                    <h3 class="font-poppins font-semibold text-2xl mb-6 text-primary">技能雷达图</h3>
-                    <div class="h-80">
-                        <canvas id="skillsRadar"></canvas>
-                    </div>
-                </div>
-                
-                <!-- 专业技能 -->
-                <div class="glass rounded-2xl p-6 neon-border">
-                    <h3 class="font-poppins font-semibold text-2xl mb-6 text-primary">专业能力</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">AI系统设计</span>
-                                <span class="text-primary">95%</span>
-                            </div>
-                            <div class="w-full bg-lightGray rounded-full h-3">
-                                <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 95%"></div>
-                            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <article class="rounded-2xl overflow-hidden border-refined bg-darkGray/30 flex flex-col hover:border-primary/20 transition-colors duration-300">
+                    <div class="h-40 bg-gradient-to-br from-primary/10 to-transparent flex items-center justify-center border-b border-white/[0.05]"><i class="fa fa-sitemap text-primary/50 text-5xl"></i></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-3 text-xs uppercase tracking-wider text-white/35">
+                            <span class="text-primary/90">AI</span><span>2025–2026</span>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">项目管理</span>
-                                <span class="text-primary">90%</span>
-                            </div>
-                            <div class="w-full bg-lightGray rounded-full h-3">
-                                <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">流程优化</span>
-                                <span class="text-primary">92%</span>
-                            </div>
-                            <div class="w-full bg-lightGray rounded-full h-3">
-                                <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 92%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">数据分析</span>
-                                <span class="text-primary">85%</span>
-                            </div>
-                            <div class="w-full bg-lightGray rounded-full h-3">
-                                <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">产品设计</span>
-                                <span class="text-primary">88%</span>
-                            </div>
-                            <div class="w-full bg-lightGray rounded-full h-3">
-                                <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 88%"></div>
-                            </div>
+                        <h3 class="font-poppins text-lg font-medium text-white mb-3"><span class="i18n-zh">AI 售后服务系统</span><span class="i18n-en">AI After-sales System</span></h3>
+                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-zh">在售后全业务域流程搭建中引入多 Agent 能力：将订单查询、客户投诉、商品推荐等环节纳入可追踪、可迭代的流程，降低人工投入并提升响应效率。</p>
+                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-en">Applied multi-agent capabilities to end-to-end after-sales workflows: brought order lookup, customer complaints, and product recommendations into traceable and iterative flows—reducing human effort and improving response speed.</p>
+                        <div class="flex justify-between items-center text-sm border-t border-white/[0.06] pt-4">
+                            <span class="text-accent/90"><span class="i18n-zh">售后全业务域流程搭建</span><span class="i18n-en">End-to-end after-sales workflows</span></span>
+                            <a href="#" class="text-primary/90 hover:text-primary text-sm tracking-wide project-link"><span class="i18n-zh">详情</span><span class="i18n-en">Details</span> →</a>
                         </div>
                     </div>
-                </div>
+                </article>
+                <article class="rounded-2xl overflow-hidden border-refined bg-darkGray/30 flex flex-col hover:border-accent/25 transition-colors duration-300">
+                    <div class="h-40 bg-gradient-to-br from-accent/10 to-transparent flex items-center justify-center border-b border-white/[0.05]"><i class="fa fa-pencil text-accent/50 text-5xl"></i></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-3 text-xs uppercase tracking-wider text-white/35">
+                            <span class="text-accent/90">AIGC</span><span>2025–2026</span>
+                        </div>
+                        <h3 class="font-poppins text-lg font-medium text-white mb-3"><span class="i18n-zh">自媒体 AI GC 系统</span><span class="i18n-en">Media AI GC System</span></h3>
+                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-zh">AI项目 0-1 落地：从选题到脚本、知识库管理与反馈迭代，设计多 Agent 工作流（选题生成 Agent + 脚本创作 Agent + 知识库管理 Agent），并将热点驱动的内容链路产品化，生产效率提升 78%。</p>
+                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-en">AI project from 0 to 1: designed multi-agent workflows from ideation to script creation, knowledge-base management, and feedback iteration (topic agent + script agent + knowledge base agent). Productized the hot-topic content pipeline, improving production efficiency by 78%.</p>
+                        <div class="flex justify-between items-center text-sm border-t border-white/[0.06] pt-4">
+                            <span class="text-accent/90">+78%</span>
+                            <a href="#" class="text-primary/90 hover:text-primary text-sm tracking-wide project-link"><span class="i18n-zh">详情</span><span class="i18n-en">Details</span> →</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="rounded-2xl overflow-hidden border-refined bg-darkGray/30 flex flex-col md:col-span-2 lg:col-span-1 hover:border-primary/20 transition-colors duration-300">
+                    <div class="h-40 bg-gradient-to-br from-secondary/20 to-transparent flex items-center justify-center border-b border-white/[0.05]"><i class="fa fa-database text-secondary/60 text-5xl"></i></div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-3 text-xs uppercase tracking-wider text-white/35">
+                            <span class="text-white/50">System</span><span>2023–2026</span>
+                        </div>
+                        <h3 class="font-poppins text-lg font-medium text-white mb-3"><span class="i18n-zh">售后服务信息系统</span><span class="i18n-en">After-sales Information System</span></h3>
+                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-zh">售后全业务域流程搭建的核心交付：打通用户信息→设计更改→质量改进的全流程闭环；独立搭建售后服务流程与管理文件，融合质量/风险/合规要求形成流程体系，达成 AOS（流程体系全生命周期建设）铜牌标准；完成审查上线并多轮迭代，形成可持续运营的业务资产。</p>
+                        <p class="text-white/50 text-sm leading-relaxed mb-6 flex-grow i18n-en">The core delivery for end-to-end after-sales workflows: built a full closed loop from user data → design changes → quality improvement. Independently built after-sales processes and management documents across business domains, integrating quality/risk/compliance requirements to form the process system and achieve AOS Bronze (process lifecycle building). Launched through review and iterated multiple times, creating sustainable operational business assets.</p>
+                        <div class="flex justify-between items-center text-sm border-t border-white/[0.06] pt-4">
+                            <span class="text-primary/80">AOS</span>
+                            <a href="#" class="text-primary/90 hover:text-primary text-sm tracking-wide project-link"><span class="i18n-zh">详情</span><span class="i18n-en">Details</span> →</a>
+                        </div>
+                    </div>
+                </article>
             </div>
-            
-            <!-- 工具熟练度 -->
-            <div class="mt-16">
-                <h3 class="font-poppins font-semibold text-2xl mb-8 text-center text-primary">工具熟练度</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="glass rounded-xl p-6 neon-border hover:scale-105 transition-transform">
-                        <div class="flex items-center mb-4">
-                            <i class="fa fa-robot text-primary text-3xl mr-4"></i>
-                            <h4 class="font-poppins font-medium text-xl">AI工具</h4>
-                        </div>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>OpenAI API</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>LangChain</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>LLM fine-tuning</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="glass rounded-xl p-6 neon-border hover:scale-105 transition-transform">
-                        <div class="flex items-center mb-4">
-                            <i class="fa fa-tasks text-primary text-3xl mr-4"></i>
-                            <h4 class="font-poppins font-medium text-xl">项目管理</h4>
-                        </div>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>Jira/Confluence</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>Microsoft Project</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>Agile/Scrum</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="glass rounded-xl p-6 neon-border hover:scale-105 transition-transform">
-                        <div class="flex items-center mb-4">
-                            <i class="fa fa-paint-brush text-primary text-3xl mr-4"></i>
-                            <h4 class="font-poppins font-medium text-xl">设计工具</h4>
-                        </div>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>Figma</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>Adobe XD</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>Sketch</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="glass rounded-xl p-6 neon-border hover:scale-105 transition-transform">
-                        <div class="flex items-center mb-4">
-                            <i class="fa fa-code text-primary text-3xl mr-4"></i>
-                            <h4 class="font-poppins font-medium text-xl">技术工具</h4>
-                        </div>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>Python/SQL</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>Excel/Tableau</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa fa-check text-primary mr-2"></i>
-                                <span>API集成</span>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="mt-14 md:mt-16">
+                <h3 class="text-center text-sm uppercase tracking-[0.25em] text-white/35 mb-6"><span class="i18n-zh">成果概览</span><span class="i18n-en">Impact snapshot</span></h3>
+                <div class="rounded-2xl border-refined p-4 md:p-6 bg-darkGray/20 max-w-4xl mx-auto h-72 md:h-80">
+                    <canvas id="resultsChart"></canvas>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 核心项目 -->
-    <section id="projects" class="py-20 relative">
-        <div class="absolute inset-0 bg-grid z-0"></div>
-        <div class="container mx-auto px-4 z-10">
-            <div class="text-center mb-16">
-                <h2 class="font-poppins font-bold text-4xl md:text-5xl mb-4">
-                    <span class="bg-gradient-to-r from-primary to-accent text-gradient">核心项目</span>
+    <section id="skills" class="py-20 md:py-28 relative border-t border-white/[0.04]">
+        <div class="absolute inset-0 bg-grid z-0 pointer-events-none opacity-35"></div>
+        <div class="container mx-auto px-4 sm:px-6 z-10 relative">
+            <div class="mb-10 md:mb-12 text-center max-w-2xl mx-auto">
+                <h2 class="font-poppins text-3xl md:text-4xl font-semibold text-white mb-2">
+                    <span class="i18n-zh">技能图谱</span>
+                    <span class="i18n-en">Skill constellation</span>
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    我的代表性项目，展示了在AI系统设计和项目管理方面的能力
+                <p class="text-white/45 text-sm md:text-base font-light">
+                    <span class="i18n-zh">三维节点与连线可拖拽视角（桌面）；悬停节点查看能力域。</span>
+                    <span class="i18n-en">3D nodes and edges — drag to orbit on desktop; hover nodes for domains.</span>
                 </p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 项目1 -->
-                <div class="glass rounded-2xl overflow-hidden neon-border hover:scale-105 transition-transform">
-                    <div class="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                        <i class="fa fa-robot text-primary text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">AI系统</span>
-                            <span class="text-gray-400 text-sm">2025-2026</span>
-                        </div>
-                        <h3 class="font-poppins font-semibold text-xl mb-3 text-white">AI售后服务系统</h3>
-                        <p class="text-gray-300 mb-6">
-                            设计多Agent工作流，支持订单查询、客户投诉、商品推荐等功能，大大降低人工成本。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <i class="fa fa-line-chart text-accent mr-2"></i>
-                                <span class="text-accent font-medium">效率提升：45%</span>
-                            </div>
-                            <a href="#" class="text-primary hover:underline flex items-center">
-                                查看详情 <i class="fa fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 项目2 -->
-                <div class="glass rounded-2xl overflow-hidden neon-border hover:scale-105 transition-transform">
-                    <div class="h-48 bg-gradient-to-br from-accent/20 to-secondary/20 flex items-center justify-center">
-                        <i class="fa fa-microphone text-accent text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-medium">AIGC</span>
-                            <span class="text-gray-400 text-sm">2025-2026</span>
-                        </div>
-                        <h3 class="font-poppins font-semibold text-xl mb-3 text-white">自媒体AIGC系统</h3>
-                        <p class="text-gray-300 mb-6">
-                            从0到1构建AIGC系统，设计多Agent工作流（选题生成Agent+脚本创作Agent+知识库管理Agent），生产效率提升78%。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <i class="fa fa-line-chart text-accent mr-2"></i>
-                                <span class="text-accent font-medium">效率提升：78%</span>
-                            </div>
-                            <a href="#" class="text-primary hover:underline flex items-center">
-                                查看详情 <i class="fa fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 项目3 -->
-                <div class="glass rounded-2xl overflow-hidden neon-border hover:scale-105 transition-transform">
-                    <div class="h-48 bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center">
-                        <i class="fa fa-database text-secondary text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-sm font-medium">系统建设</span>
-                            <span class="text-gray-400 text-sm">2023-2026</span>
-                        </div>
-                        <h3 class="font-poppins font-semibold text-xl mb-3 text-white">售后服务信息系统</h3>
-                        <p class="text-gray-300 mb-6">
-                            完成售后服务信息系统的审查上线，并收集使用需求完成多轮迭代，达成中航工业集团AOS铜牌标准。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <i class="fa fa-certificate text-accent mr-2"></i>
-                                <span class="text-accent font-medium">AOS认证</span>
-                            </div>
-                            <a href="#" class="text-primary hover:underline flex items-center">
-                                查看详情 <i class="fa fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
+            <div class="rounded-2xl border-refined bg-darkGray/25 overflow-hidden mb-12">
+                <div id="skill-graph" class="relative w-full h-[min(420px,55vh)] md:h-[min(480px,50vh)] touch-none">
+                    <div id="skill-tooltip" class="pointer-events-none fixed z-[100] hidden px-3 py-2 rounded-lg glass text-xs text-white/90 max-w-[220px] border border-white/10 shadow-xl"></div>
                 </div>
             </div>
-            
-            <!-- 项目成果数据 -->
-            <div class="mt-16">
-                <h3 class="font-poppins font-semibold text-2xl mb-8 text-center text-primary">项目成果数据</h3>
-                <div class="glass rounded-2xl p-6 neon-border">
-                    <div class="h-80">
-                        <canvas id="resultsChart"></canvas>
-                    </div>
-                </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 text-xs md:text-sm text-white/55">
+                <div class="border-refined rounded-xl p-4 bg-darkGray/20"><span class="text-primary/90 block mb-2 font-medium tracking-wide">AI</span>LLM · Agent · RAG</div>
+                <div class="border-refined rounded-xl p-4 bg-darkGray/20"><span class="text-accent/90 block mb-2 font-medium tracking-wide">PM</span>PRD · Roadmap · Stakeholders</div>
+                <div class="border-refined rounded-xl p-4 bg-darkGray/20"><span class="text-white/50 block mb-2 font-medium tracking-wide">Data</span>SQL · Metrics · Dashboards</div>
+                <div class="border-refined rounded-xl p-4 bg-darkGray/20"><span class="text-primary/80 block mb-2 font-medium tracking-wide">Delivery</span>Jira · API · Figma</div>
             </div>
         </div>
     </section>
 
-    <!-- 专业文档 -->
-    <section id="docs" class="py-20 relative">
-        <div class="absolute inset-0 bg-grid z-0"></div>
-        <div class="container mx-auto px-4 z-10">
-            <div class="text-center mb-16">
-                <h2 class="font-poppins font-bold text-4xl md:text-5xl mb-4">
-                    <span class="bg-gradient-to-r from-primary to-accent text-gradient">专业文档</span>
+    <!--
+      文档呈现建议：正式交付与打印用 PDF（放 docs/）；需要内嵌动效或长文可读性时用 HTML（放 previews/）。
+      下方链接示例：将文件放入仓库后改为真实路径，例如 docs/ai-support-competitive.pdf 与 previews/ai-support.html
+    -->
+    <section id="docs" class="py-20 md:py-28 relative">
+        <div class="absolute inset-0 bg-grid z-0 pointer-events-none opacity-30"></div>
+        <div class="container mx-auto px-4 sm:px-6 z-10 relative">
+            <div class="mb-12 md:mb-14">
+                <h2 class="font-poppins text-3xl md:text-4xl font-semibold text-white mb-2">
+                    <span class="i18n-zh">专业文档</span>
+                    <span class="i18n-en">Documents</span>
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    我的竞品分析和需求文档，展示了产品规划和设计能力
+                <p class="text-white/40 text-sm md:text-base font-light max-w-2xl">
+                    <span class="i18n-zh">竞品分析、PRD 与规格说明：PDF 便于下载与归档；HTML 适合浏览器内完整排版预览。</span>
+                    <span class="i18n-en">Competitive analysis & PRDs: PDF for download; HTML for rich in-browser reading.</span>
                 </p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- 竞品分析 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
-                    <h3 class="font-poppins font-semibold text-2xl mb-6 text-primary">竞品分析</h3>
+                    <h3 class="text-accent/90 text-xs uppercase tracking-[0.2em] mb-4"><span class="i18n-zh">竞品分析</span><span class="i18n-en">Competitive analysis</span></h3>
                     <div class="space-y-4">
-                        <div class="glass rounded-xl p-6 neon-border hover:scale-105 transition-transform">
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">AI系统</span>
-                                <span class="text-gray-400 text-sm">2025-12</span>
+                        <div class="rounded-xl border-refined p-5 md:p-6 bg-darkGray/25">
+                            <div class="flex flex-wrap gap-2 justify-between items-start mb-3">
+                                <span class="text-xs text-primary/80">AI</span><span class="text-white/30 text-xs">2025-12</span>
                             </div>
-                            <h4 class="font-poppins font-medium text-xl mb-3 text-white">AI售后服务系统竞品分析</h4>
-                            <p class="text-gray-300 mb-6">
-                                分析了市场上主流的AI售后服务系统，包括功能对比、优劣势分析和市场定位建议。
-                            </p>
-                            <div class="flex justify-between items-center">
-                                <a href="#" class="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity flex items-center">
-                                    <i class="fa fa-download mr-2"></i> 下载PDF
-                                </a>
-                                <a href="#" class="text-primary hover:underline flex items-center">
-                                    在线预览 <i class="fa fa-eye ml-2"></i>
-                                </a>
+                            <h4 class="font-medium text-white mb-2"><span class="i18n-zh">AI 售后服务系统竞品分析</span><span class="i18n-en">AI After-sales — Competitive Analysis</span></h4>
+                            <p class="text-white/45 text-sm mb-4 i18n-zh">功能对比、优劣势与定位建议。</p>
+                            <p class="text-white/45 text-sm mb-4 i18n-en">Feature matrix, positioning, and gaps.</p>
+                            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                                <a href="docs/ai-aftersales-competitive.pdf" class="inline-flex justify-center items-center btn-primary text-white text-sm px-4 py-2.5 rounded-lg"><i class="fa fa-download mr-2 opacity-70"></i><span class="i18n-zh">PDF</span><span class="i18n-en">PDF</span></a>
+                                <a href="previews/ai-aftersales-competitive.html" class="inline-flex justify-center items-center border border-white/15 text-white/80 text-sm px-4 py-2.5 rounded-lg hover:bg-white/5"><span class="i18n-zh">HTML 预览</span><span class="i18n-en">HTML preview</span></a>
                             </div>
                         </div>
-                        <div class="glass rounded-xl p-6 neon-border hover:scale-105 transition-transform">
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-medium">AIGC</span>
-                                <span class="text-gray-400 text-sm">2026-01</span>
+                        <div class="rounded-xl border-refined p-5 md:p-6 bg-darkGray/25">
+                            <div class="flex flex-wrap gap-2 justify-between items-start mb-3">
+                                <span class="text-xs text-accent/80">AIGC</span><span class="text-white/30 text-xs">2026-01</span>
                             </div>
-                            <h4 class="font-poppins font-medium text-xl mb-3 text-white">自媒体AIGC工具竞品分析</h4>
-                            <p class="text-gray-300 mb-6">
-                                对比分析了市场上主流的AIGC内容创作工具，包括功能、价格和适用场景。
-                            </p>
-                            <div class="flex justify-between items-center">
-                                <a href="#" class="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity flex items-center">
-                                    <i class="fa fa-download mr-2"></i> 下载PDF
-                                </a>
-                                <a href="#" class="text-primary hover:underline flex items-center">
-                                    在线预览 <i class="fa fa-eye ml-2"></i>
-                                </a>
+                            <h4 class="font-medium text-white mb-2"><span class="i18n-zh">自媒体 AIGC 工具竞品分析</span><span class="i18n-en">AIGC Tools — Competitive Analysis</span></h4>
+                            <p class="text-white/45 text-sm mb-4 i18n-zh">功能、价格与适用场景对比。</p>
+                            <p class="text-white/45 text-sm mb-4 i18n-en">Features, pricing, and fit.</p>
+                            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                                <a href="docs/aigc-media-competitive.pdf" class="inline-flex justify-center items-center btn-primary text-white text-sm px-4 py-2.5 rounded-lg"><i class="fa fa-download mr-2 opacity-70"></i>PDF</a>
+                                <a href="previews/aigc-media-competitive.html" class="inline-flex justify-center items-center border border-white/15 text-white/80 text-sm px-4 py-2.5 rounded-lg hover:bg-white/5"><span class="i18n-zh">HTML 预览</span><span class="i18n-en">HTML preview</span></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 需求文档 -->
                 <div>
-                    <h3 class="font-poppins font-semibold text-2xl mb-6 text-primary">需求文档</h3>
+                    <h3 class="text-primary/80 text-xs uppercase tracking-[0.2em] mb-4"><span class="i18n-zh">需求与规格</span><span class="i18n-en">Requirements & specs</span></h3>
                     <div class="space-y-4">
-                        <div class="glass rounded-xl p-6 neon-border hover:scale-105 transition-transform">
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-sm font-medium">系统建设</span>
-                                <span class="text-gray-400 text-sm">2024-06</span>
+                        <div class="rounded-xl border-refined p-5 md:p-6 bg-darkGray/25">
+                            <div class="flex flex-wrap gap-2 justify-between items-start mb-3">
+                                <span class="text-xs text-white/40">System</span><span class="text-white/30 text-xs">2024-06</span>
                             </div>
-                            <h4 class="font-poppins font-medium text-xl mb-3 text-white">售后服务信息系统PRD</h4>
-                            <p class="text-gray-300 mb-6">
-                                完整的产品需求文档，包括功能规格、用户流程、界面设计和技术方案。
-                            </p>
-                            <div class="flex justify-between items-center">
-                                <a href="#" class="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity flex items-center">
-                                    <i class="fa fa-download mr-2"></i> 下载PDF
-                                </a>
-                                <a href="#" class="text-primary hover:underline flex items-center">
-                                    在线预览 <i class="fa fa-eye ml-2"></i>
-                                </a>
+                            <h4 class="font-medium text-white mb-2"><span class="i18n-zh">售后服务信息系统 PRD</span><span class="i18n-en">After-sales System PRD</span></h4>
+                            <p class="text-white/45 text-sm mb-4 i18n-zh">功能规格、流程与界面要点。</p>
+                            <p class="text-white/45 text-sm mb-4 i18n-en">Scope, flows, and UI notes.</p>
+                            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                                <a href="docs/aftersales-prd.pdf" class="inline-flex justify-center items-center btn-primary text-white text-sm px-4 py-2.5 rounded-lg"><i class="fa fa-download mr-2 opacity-70"></i>PDF</a>
+                                <a href="previews/aftersales-prd.html" class="inline-flex justify-center items-center border border-white/15 text-white/80 text-sm px-4 py-2.5 rounded-lg hover:bg-white/5"><span class="i18n-zh">HTML 预览</span><span class="i18n-en">HTML preview</span></a>
                             </div>
                         </div>
-                        <div class="glass rounded-xl p-6 neon-border hover:scale-105 transition-transform">
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">AI系统</span>
-                                <span class="text-gray-400 text-sm">2025-09</span>
+                        <div class="rounded-xl border-refined p-5 md:p-6 bg-darkGray/25">
+                            <div class="flex flex-wrap gap-2 justify-between items-start mb-3">
+                                <span class="text-xs text-primary/80">AI</span><span class="text-white/30 text-xs">2025-09</span>
                             </div>
-                            <h4 class="font-poppins font-medium text-xl mb-3 text-white">AI售后服务系统功能规格说明书</h4>
-                            <p class="text-gray-300 mb-6">
-                                详细的功能规格说明书，包括系统架构、模块设计和API接口定义。
-                            </p>
-                            <div class="flex justify-between items-center">
-                                <a href="#" class="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity flex items-center">
-                                    <i class="fa fa-download mr-2"></i> 下载PDF
-                                </a>
-                                <a href="#" class="text-primary hover:underline flex items-center">
-                                    在线预览 <i class="fa fa-eye ml-2"></i>
-                                </a>
+                            <h4 class="font-medium text-white mb-2"><span class="i18n-zh">AI 售后服务系统功能规格说明书</span><span class="i18n-en">AI After-sales — Functional Spec</span></h4>
+                            <p class="text-white/45 text-sm mb-4 i18n-zh">架构、模块与接口定义。</p>
+                            <p class="text-white/45 text-sm mb-4 i18n-en">Architecture, modules, and APIs.</p>
+                            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                                <a href="docs/ai-aftersales-spec.pdf" class="inline-flex justify-center items-center btn-primary text-white text-sm px-4 py-2.5 rounded-lg"><i class="fa fa-download mr-2 opacity-70"></i>PDF</a>
+                                <a href="previews/ai-aftersales-spec.html" class="inline-flex justify-center items-center border border-white/15 text-white/80 text-sm px-4 py-2.5 rounded-lg hover:bg-white/5"><span class="i18n-zh">HTML 预览</span><span class="i18n-en">HTML preview</span></a>
                             </div>
                         </div>
                     </div>
@@ -534,345 +341,364 @@
         </div>
     </section>
 
-    <!-- 联系方式 -->
-    <section id="contact" class="py-20 relative">
-        <div class="absolute inset-0 bg-grid z-0"></div>
-        <div class="container mx-auto px-4 z-10">
-            <div class="text-center mb-16">
-                <h2 class="font-poppins font-bold text-4xl md:text-5xl mb-4">
-                    <span class="bg-gradient-to-r from-primary to-accent text-gradient">联系我</span>
+    <section id="contact" class="py-20 md:py-28 relative border-t border-white/[0.04]">
+        <div class="absolute inset-0 bg-grid z-0 pointer-events-none opacity-25"></div>
+        <div class="container mx-auto px-4 sm:px-6 z-10 relative">
+            <div class="text-center mb-12 md:mb-14">
+                <h2 class="font-poppins text-3xl md:text-4xl font-semibold text-white mb-2">
+                    <span class="i18n-zh">联系</span>
+                    <span class="i18n-en">Contact</span>
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    如果您对我的专业背景和项目经验感兴趣，欢迎通过以下方式联系我
+                <p class="text-white/40 text-sm font-light">
+                    <span class="i18n-zh">微信 · 电话 · 邮箱</span>
+                    <span class="i18n-en">WeChat · Phone · Email</span>
                 </p>
             </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div class="glass rounded-2xl p-8 neon-border">
-                    <h3 class="font-poppins font-semibold text-2xl mb-6 text-primary">联系信息</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fa fa-envelope text-primary text-2xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white mb-1">邮箱</h4>
-                                <p class="text-gray-300">example@email.com</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fa fa-linkedin text-primary text-2xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white mb-1">LinkedIn</h4>
-                                <p class="text-gray-300">linkedin.com/in/example</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mr-4">
-                                <i class="fa fa-github text-primary text-2xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white mb-1">GitHub</h4>
-                                <p class="text-gray-300">github.com/example</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-10">
-                        <h4 class="font-medium text-white mb-4">专业领域</h4>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium">AI产品管理</span>
-                            <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium">项目管理</span>
-                            <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium">流程优化</span>
-                            <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium">To B解决方案</span>
-                            <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium">AIGC</span>
-                            <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-medium">数据分析</span>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 max-w-4xl mx-auto">
+                <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 text-center flex flex-col items-center">
+                    <p class="text-xs uppercase tracking-[0.2em] text-white/35 mb-4"><span class="i18n-zh">微信</span><span class="i18n-en">WeChat</span></p>
+                    <div class="w-40 h-40 sm:w-44 sm:h-44 rounded-xl border border-white/10 overflow-hidden bg-darkGray flex items-center justify-center mb-3">
+                        <img src="images/wechat-qr.png" alt="WeChat QR" class="max-w-full max-h-full object-contain hidden" id="wechat-qr-img">
+                        <span id="wechat-placeholder" class="text-white/30 text-xs px-4 i18n-zh">放置 images/wechat-qr.png</span>
+                        <span id="wechat-placeholder-en" class="text-white/30 text-xs px-4 i18n-en">Add images/wechat-qr.png</span>
                     </div>
                 </div>
-                
-                <div class="glass rounded-2xl p-8 neon-border">
-                    <h3 class="font-poppins font-semibold text-2xl mb-6 text-primary">发送消息</h3>
-                    <form>
-                        <div class="mb-6">
-                            <label for="name" class="block text-gray-300 font-medium mb-2">姓名</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 bg-lightGray border border-primary/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white">
-                        </div>
-                        <div class="mb-6">
-                            <label for="email" class="block text-gray-300 font-medium mb-2">邮箱</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 bg-lightGray border border-primary/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white">
-                        </div>
-                        <div class="mb-6">
-                            <label for="subject" class="block text-gray-300 font-medium mb-2">主题</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 bg-lightGray border border-primary/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white">
-                        </div>
-                        <div class="mb-8">
-                            <label for="message" class="block text-gray-300 font-medium mb-2">消息</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-lightGray border border-primary/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white font-medium py-3 rounded-lg hover:opacity-90 transition-opacity neon-glow">
-                            发送消息
-                        </button>
-                    </form>
+                <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 flex flex-col justify-center">
+                    <p class="text-xs uppercase tracking-[0.2em] text-white/35 mb-3"><span class="i18n-zh">电话</span><span class="i18n-en">Phone</span></p>
+                    <a href="tel:+8610000000000" id="phone-link" class="text-xl md:text-2xl font-poppins text-white/90 hover:text-accent transition-colors break-all">+86 请替换</a>
+                    <p class="text-white/30 text-xs mt-3 i18n-zh">在页面底部脚本中修改 PHONE_DISPLAY 与 PHONE_TEL</p>
+                    <p class="text-white/30 text-xs mt-3 i18n-en">Edit PHONE_DISPLAY & PHONE_TEL in the script</p>
+                </div>
+                <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 flex flex-col justify-center">
+                    <p class="text-xs uppercase tracking-[0.2em] text-white/35 mb-3"><span class="i18n-zh">邮箱</span><span class="i18n-en">Email</span></p>
+                    <a href="mailto:your@email.com" id="email-link" class="text-lg md:text-xl text-primary/90 hover:text-primary break-all">your@email.com</a>
+                    <p class="text-white/30 text-xs mt-3 i18n-zh">在脚本中修改 CONTACT_EMAIL</p>
+                    <p class="text-white/30 text-xs mt-3 i18n-en">Set CONTACT_EMAIL in script</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 页脚 -->
-    <footer class="py-10 relative">
-        <div class="absolute inset-0 bg-grid z-0"></div>
-        <div class="container mx-auto px-4 z-10">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-poppins font-bold mb-2">
-                        <span class="text-primary">AI</span><span class="text-white">PM</span>
-                    </div>
-                    <p class="text-gray-400">
-                        专注于AI系统设计和To B解决方案
-                    </p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                        <i class="fa fa-linkedin text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                        <i class="fa fa-github text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                        <i class="fa fa-envelope text-xl"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500">
-                <p>&copy; 2026 AI产品经理个人网站. 保留所有权利.</p>
-            </div>
+    <footer class="py-12 relative border-t border-white/[0.06]">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <p class="font-poppins text-lg text-white/80 mb-1">amber<span class="text-white/35">个人网站</span></p>
+            <p class="text-xs text-white/30 tracking-[0.2em] uppercase mb-6">Amber · AI Product Manager</p>
+            <p class="text-white/25 text-sm">&copy; 2026 <span class="i18n-zh">柏馨睿</span><span class="i18n-en">Amber</span>. <span class="i18n-zh">保留所有权利。</span><span class="i18n-en">All rights reserved.</span></p>
         </div>
     </footer>
 
     <script>
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        const CONTACT_EMAIL = 'baixinrui1017@163.com';
+        const PHONE_DISPLAY = '+86 15513681017';
+        const PHONE_TEL = '+8615513681017';
+
+        document.getElementById('email-link').href = 'mailto:' + CONTACT_EMAIL;
+        document.getElementById('email-link').textContent = CONTACT_EMAIL;
+        const pl = document.getElementById('phone-link');
+        pl.href = 'tel:' + PHONE_TEL.replace(/\s/g, '');
+        pl.textContent = PHONE_DISPLAY;
+
+        const avatar = document.getElementById('avatar-img');
+        const avatarFb = document.getElementById('avatar-fallback');
+        avatar.addEventListener('error', function () {
+            this.classList.add('hidden');
+            avatarFb.classList.remove('hidden');
+            avatarFb.classList.add('flex');
+        });
+
+        const qr = document.getElementById('wechat-qr-img');
+        const wph = document.getElementById('wechat-placeholder');
+        const wphen = document.getElementById('wechat-placeholder-en');
+        qr.addEventListener('load', function () {
+            qr.classList.remove('hidden');
+            wph.classList.add('hidden');
+            wphen.classList.add('hidden');
+        });
+        qr.addEventListener('error', function () {
+            qr.classList.add('hidden');
+        });
+        if (qr.complete && qr.naturalHeight > 0) {
+            qr.dispatchEvent(new Event('load'));
+        }
+
+        document.getElementById('lang-toggle').addEventListener('click', function () {
+            const html = document.documentElement;
+            html.classList.toggle('lang-en');
+            html.lang = html.classList.contains('lang-en') ? 'en' : 'zh-CN';
+        });
+
+        const mobilePanel = document.getElementById('mobile-panel');
+        const navOpen = document.getElementById('nav-open');
+        navOpen.addEventListener('click', function () {
+            mobilePanel.classList.toggle('hidden');
+            this.setAttribute('aria-expanded', String(!mobilePanel.classList.contains('hidden')));
+        });
+        document.querySelectorAll('.mobile-link').forEach(function (a) {
+            a.addEventListener('click', function () {
+                mobilePanel.classList.add('hidden');
+                navOpen.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const id = this.getAttribute('href');
+                if (id.length <= 1) return;
+                const target = document.querySelector(id);
                 if (target) {
+                    e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
 
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-3');
-                nav.classList.remove('py-4');
-            } else {
-                nav.classList.add('py-4');
-                nav.classList.remove('py-3');
-            }
-        });
-
-        // 初始化技能雷达图
-        const skillsRadarCtx = document.getElementById('skillsRadar').getContext('2d');
-        const skillsRadar = new Chart(skillsRadarCtx, {
-            type: 'radar',
-            data: {
-                labels: ['AI系统设计', '项目管理', '流程优化', '数据分析', '产品设计', '团队协作'],
-                datasets: [{
-                    label: '技能水平',
-                    data: [95, 90, 92, 85, 88, 94],
-                    backgroundColor: 'rgba(0, 212, 255, 0.2)',
-                    borderColor: 'rgba(0, 212, 255, 1)',
-                    pointBackgroundColor: 'rgba(0, 212, 255, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(0, 212, 255, 1)'
-                }]
-            },
-            options: {
-                scales: {
-                    r: {
-                        angleLines: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        pointLabels: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.5)',
-                            backdropColor: 'transparent'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    }
-                }
-            }
-        });
-
-        // 初始化项目成果图表
-        const resultsChartCtx = document.getElementById('resultsChart').getContext('2d');
-        const resultsChart = new Chart(resultsChartCtx, {
-            type: 'bar',
-            data: {
-                labels: ['AI售后服务系统', '自媒体AIGC系统', '售后服务信息系统'],
-                datasets: [{
-                    label: '效率提升 (%)',
-                    data: [45, 78, 30],
-                    backgroundColor: [
-                        'rgba(0, 212, 255, 0.7)',
-                        'rgba(255, 78, 205, 0.7)',
-                        'rgba(121, 40, 202, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgba(0, 212, 255, 1)',
-                        'rgba(255, 78, 205, 1)',
-                        'rgba(121, 40, 202, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    }
-                }
-            }
-        });
-
-        // 粒子背景效果
         function initParticles() {
-            const container = document.getElementById('particles-bg');
-            
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            var container = document.getElementById('particles-bg');
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.setSize(window.innerWidth, window.innerHeight);
             container.appendChild(renderer.domElement);
-            
-            // 创建粒子
-            const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 1000;
-            
-            const posArray = new Float32Array(particlesCount * 3);
-            for (let i = 0; i < particlesCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 10;
-            }
-            
-            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            
-            const particlesMaterial = new THREE.PointsMaterial({
-                size: 0.005,
-                color: 0x00D4FF,
+
+            var particlesGeometry = new THREE.BufferGeometry();
+            var n = 420;
+            var pos = new Float32Array(n * 3);
+            for (var i = 0; i < n * 3; i++) pos[i] = (Math.random() - 0.5) * 10;
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+            var particlesMaterial = new THREE.PointsMaterial({
+                size: 0.004,
+                color: 0x5eead4,
                 transparent: true,
-                opacity: 0.8
+                opacity: 0.35
             });
-            
-            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-            scene.add(particlesMesh);
-            
+            var mesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(mesh);
             camera.position.z = 3;
-            
-            // 动画
-            function animate() {
-                requestAnimationFrame(animate);
-                particlesMesh.rotation.y += 0.0005;
+
+            function tick() {
+                requestAnimationFrame(tick);
+                mesh.rotation.y += 0.00025;
                 renderer.render(scene, camera);
             }
-            animate();
-            
-            // 响应窗口大小变化
-            window.addEventListener('resize', () => {
+            tick();
+            window.addEventListener('resize', function () {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
         }
-        
-        // 初始化粒子背景
         initParticles();
 
-        // GSAP 动画
+        var chartColors = {
+            c1: 'rgba(94, 234, 212, 0.75)',
+            c2: 'rgba(234, 140, 58, 0.75)',
+            c3: 'rgba(100, 116, 139, 0.65)'
+        };
+        var resultsChartCtx = document.getElementById('resultsChart').getContext('2d');
+        new Chart(resultsChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['AI 售后 / After-sales AI', 'AIGC', '信息系统 / Info system'],
+                datasets: [{
+                    label: '%',
+                    data: [45, 78, 30],
+                    backgroundColor: [chartColors.c1, chartColors.c2, chartColors.c3],
+                    borderWidth: 0,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255,255,255,0.06)' },
+                        ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 11 } }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 10 }, maxRotation: 45, minRotation: 0 }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        function fibSpherePoints(count, radius) {
+            var pts = [];
+            var golden = (1 + Math.sqrt(5)) / 2;
+            for (var i = 0; i < count; i++) {
+                var theta = 2 * Math.PI * i / golden;
+                var phi = Math.acos(1 - 2 * (i + 0.5) / count);
+                pts.push({
+                    x: radius * Math.sin(phi) * Math.cos(theta),
+                    y: radius * Math.sin(phi) * Math.sin(theta),
+                    z: radius * Math.cos(phi)
+                });
+            }
+            return pts;
+        }
+
+        var skillNodes = [
+            { zh: 'AI 系统设计', en: 'AI system design' },
+            { zh: '多 Agent 工作流', en: 'Multi-agent workflows' },
+            { zh: 'LLM / Prompt', en: 'LLM / prompt' },
+            { zh: 'RAG / 知识库', en: 'RAG / knowledge base' },
+            { zh: 'MCP', en: 'MCP' },
+            { zh: '需求分析与 PRD', en: 'Requirements & PRD' },
+            { zh: 'AOS 流程体系', en: 'AOS process lifecycle' },
+            { zh: '质量 / 风险 / 合规', en: 'Quality / risk / compliance' },
+            { zh: '指标闭环', en: 'Metrics loop' },
+            { zh: '数据分析与仪表盘', en: 'Data & dashboards' },
+            { zh: '扣子 / 墨刀（原型工具）', en: 'QeZi / Modao (prototype tools)' },
+            { zh: '跨部门协同交付', en: 'Cross-team delivery' }
+        ];
+
+        function initSkillGraph() {
+            var holder = document.getElementById('skill-graph');
+            var tooltip = document.getElementById('skill-tooltip');
+            if (!holder || typeof THREE === 'undefined') return;
+
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+            camera.position.z = 5.2;
+
+            var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            holder.appendChild(renderer.domElement);
+
+            var group = new THREE.Group();
+            scene.add(group);
+
+            var sphereGeo = new THREE.SphereGeometry(0.11, 20, 20);
+            var sphereMatHi = new THREE.MeshBasicMaterial({ color: 0x5eead4 });
+            var meshes = [];
+            var positions = fibSpherePoints(skillNodes.length, 1.35);
+
+            for (var i = 0; i < positions.length; i++) {
+                var idleMat = new THREE.MeshBasicMaterial({ color: 0xea8c3a });
+                var m = new THREE.Mesh(sphereGeo, idleMat);
+                m.position.set(positions[i].x, positions[i].y, positions[i].z);
+                m.userData.index = i;
+                m.userData.idleMat = idleMat;
+                group.add(m);
+                meshes.push(m);
+            }
+
+            var lineMat = new THREE.LineBasicMaterial({
+                color: 0x5eead4,
+                transparent: true,
+                opacity: 0.22
+            });
+            for (var a = 0; a < meshes.length; a++) {
+                for (var b = a + 1; b < meshes.length; b++) {
+                    var da = meshes[a].position;
+                    var db = meshes[b].position;
+                    var dist = da.distanceTo(db);
+                    if (dist < 1.55) {
+                        var geo = new THREE.BufferGeometry().setFromPoints([da.clone(), db.clone()]);
+                        group.add(new THREE.Line(geo, lineMat));
+                    }
+                }
+            }
+
+            var raycaster = new THREE.Raycaster();
+            var pointer = new THREE.Vector2();
+            var hovered = null;
+            var dragging = false;
+            var prevX = 0, prevY = 0;
+
+            function resize() {
+                var w = holder.clientWidth;
+                var h = holder.clientHeight;
+                camera.aspect = w / h;
+                camera.updateProjectionMatrix();
+                renderer.setSize(w, h);
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            holder.addEventListener('pointermove', function (e) {
+                var rect = renderer.domElement.getBoundingClientRect();
+                pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+                pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+                if (dragging) {
+                    var dx = e.clientX - prevX;
+                    var dy = e.clientY - prevY;
+                    group.rotation.y += dx * 0.005;
+                    group.rotation.x += dy * 0.003;
+                    group.rotation.x = Math.max(-0.65, Math.min(0.65, group.rotation.x));
+                    prevX = e.clientX;
+                    prevY = e.clientY;
+                }
+                raycaster.setFromCamera(pointer, camera);
+                var hits = raycaster.intersectObjects(meshes);
+                if (hits.length > 0) {
+                    var idx = hits[0].object.userData.index;
+                    if (hovered !== idx) {
+                        if (hovered !== null) meshes[hovered].material = meshes[hovered].userData.idleMat;
+                        hovered = idx;
+                        meshes[hovered].material = sphereMatHi;
+                        var sn = skillNodes[idx];
+                        tooltip.innerHTML = '<span class="text-primary/90">' + sn.zh + '</span><br><span class="text-white/50 text-[11px] mt-1 block">' + sn.en + '</span>';
+                        tooltip.classList.remove('hidden');
+                    }
+                    tooltip.style.left = (e.clientX + 14) + 'px';
+                    tooltip.style.top = (e.clientY + 14) + 'px';
+                } else {
+                    if (hovered !== null) {
+                        meshes[hovered].material = meshes[hovered].userData.idleMat;
+                        hovered = null;
+                    }
+                    tooltip.classList.add('hidden');
+                }
+            });
+
+            holder.addEventListener('pointerdown', function (e) {
+                dragging = true;
+                prevX = e.clientX;
+                prevY = e.clientY;
+            });
+            holder.addEventListener('pointerup', function () { dragging = false; });
+            holder.addEventListener('pointerleave', function () {
+                dragging = false;
+                tooltip.classList.add('hidden');
+                if (hovered !== null) {
+                    meshes[hovered].material = meshes[hovered].userData.idleMat;
+                    hovered = null;
+                }
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                if (!dragging) group.rotation.y += 0.0012;
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+        initSkillGraph();
+
         gsap.registerPlugin(ScrollTrigger);
-        
-        // 技能部分动画
-        gsap.from('#skills .glass', {
-            scrollTrigger: {
-                trigger: '#skills',
-                start: 'top 80%'
-            },
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2
-        });
-        
-        // 项目部分动画
-        gsap.from('#projects .glass', {
-            scrollTrigger: {
-                trigger: '#projects',
-                start: 'top 80%'
-            },
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2
-        });
-        
-        // 文档部分动画
-        gsap.from('#docs .glass', {
-            scrollTrigger: {
-                trigger: '#docs',
-                start: 'top 80%'
-            },
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2
-        });
-        
-        // 联系部分动画
-        gsap.from('#contact .glass', {
-            scrollTrigger: {
-                trigger: '#contact',
-                start: 'top 80%'
-            },
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2
+        gsap.set('.hero-reveal', { opacity: 0, y: 20 });
+        gsap.set('.hero-line', { scaleX: 0, transformOrigin: 'left center' });
+        gsap.set('.hero-photo', { opacity: 0, scale: 0.96 });
+        gsap.timeline({ defaults: { ease: 'power3.out' } })
+            .to('.hero-line', { scaleX: 1, duration: 1.05, ease: 'power2.inOut' })
+            .to('.hero-reveal', { opacity: 1, y: 0, duration: 0.72, stagger: 0.09 }, '-=0.8');
+        gsap.to('.hero-photo', { opacity: 1, scale: 1, duration: 0.95, ease: 'power3.out', delay: 0.12 });
+
+        ['#about', '#projects', '#skills', '#docs', '#contact'].forEach(function (sel) {
+            gsap.from(sel + ' .border-refined, ' + sel + ' article', {
+                scrollTrigger: { trigger: sel, start: 'top 88%', toggleActions: 'play none none none' },
+                opacity: 0,
+                y: 16,
+                duration: 0.55,
+                stagger: 0.06,
+                ease: 'power2.out'
+            });
         });
     </script>
 </body>
