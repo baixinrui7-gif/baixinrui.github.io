@@ -15,12 +15,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#5EEAD4',
-                        secondary: '#64748B',
-                        accent: '#EA8C3A',
-                        dark: '#07080B',
-                        darkGray: '#101218',
-                        lightGray: '#1A1D26'
+                        primary: '#22D3EE',
+                        secondary: '#A78BFA',
+                        accent: '#FF9F43',
+                        dark: '#040A16',
+                        darkGray: '#0B1327',
+                        lightGray: '#121C36'
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
@@ -39,35 +39,36 @@
             }
             .bg-grid {
                 background-image:
-                    linear-gradient(rgba(94, 234, 212, 0.035) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(234, 140, 58, 0.025) 1px, transparent 1px);
-                background-size: 48px 48px;
+                    radial-gradient(ellipse at top, rgba(34, 211, 238, 0.14) 0%, rgba(34, 211, 238, 0.06) 25%, transparent 60%),
+                    linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 159, 67, 0.028) 1px, transparent 1px);
+                background-size: 36px 36px;
             }
             .glass {
                 backdrop-filter: blur(16px);
                 -webkit-backdrop-filter: blur(16px);
-                background: rgba(16, 18, 24, 0.72);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                box-shadow:
-                    0 0 0 1px rgba(234, 140, 58, 0.06),
-                    0 18px 70px rgba(0, 0, 0, 0.35);
-            }
-            .border-refined {
+                background: rgba(7, 12, 26, 0.64);
                 border: 1px solid rgba(255, 255, 255, 0.10);
                 box-shadow:
-                    0 0 0 1px rgba(94, 234, 212, 0.06),
-                    0 0 35px rgba(94, 234, 212, 0.06);
+                    0 0 0 1px rgba(255, 159, 67, 0.06),
+                    0 24px 90px rgba(0, 0, 0, 0.42);
+            }
+            .border-refined {
+                border: 1px solid rgba(255, 255, 255, 0.11);
+                box-shadow:
+                    0 0 0 1px rgba(34, 211, 238, 0.08),
+                    0 0 38px rgba(34, 211, 238, 0.06);
             }
             .border-refined:hover {
-                border-color: rgba(234, 140, 58, 0.22);
+                border-color: rgba(255, 159, 67, 0.25);
                 box-shadow:
-                    0 0 0 1px rgba(234, 140, 58, 0.16),
-                    0 0 55px rgba(94, 234, 212, 0.10),
+                    0 0 0 1px rgba(255, 159, 67, 0.15),
+                    0 0 60px rgba(34, 211, 238, 0.12),
                     0 26px 90px rgba(0, 0, 0, 0.45);
             }
             .btn-primary {
-                background: linear-gradient(135deg, rgba(94, 234, 212, 0.15), rgba(234, 140, 58, 0.12));
-                border: 1px solid rgba(234, 140, 58, 0.35);
+                background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(255, 159, 67, 0.12));
+                border: 1px solid rgba(255, 159, 67, 0.40);
             }
         }
         html.lang-en .i18n-zh { display: none !important; }
@@ -83,7 +84,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="font-inter bg-dark text-white overflow-x-hidden antialiased">
-    <div id="particles-bg" class="fixed inset-0 z-0 pointer-events-none opacity-40"></div>
+    <div id="particles-bg" class="fixed inset-0 z-0 pointer-events-none opacity-60"></div>
 
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/[0.06]">
         <div class="container mx-auto px-4 sm:px-6 py-3 md:py-4 flex justify-between items-center">
@@ -150,8 +151,8 @@
                 <div class="lg:w-[45%] flex justify-center order-1 lg:order-2">
                     <div class="hero-photo relative flex flex-col items-center">
                         <div class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72">
-                            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-accent/15 opacity-80"></div>
-                            <div class="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-primary/40 via-transparent to-accent/40">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/12 via-secondary/10 to-accent/10 opacity-90"></div>
+                            <div class="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-primary/40 via-secondary/10 to-accent/35">
                                 <div class="w-full h-full rounded-full overflow-hidden bg-darkGray border border-white/[0.08]">
                                     <img src="images/avatar.jpg" alt="柏馨睿 Amber" class="w-full h-full object-cover" id="avatar-img" width="512" height="512">
                                 </div>
@@ -159,7 +160,7 @@
                             <p id="avatar-fallback" class="hidden absolute inset-0 flex items-center justify-center text-center text-xs text-white/40 px-6 bg-darkGray rounded-full"><span class="i18n-zh">请将头像保存为 images/avatar.jpg</span><span class="i18n-en">Add images/avatar.jpg</span></p>
                         </div>
 
-                        <div class="mt-6 w-full max-w-[420px] border-refined rounded-2xl bg-darkGray/35 px-5 py-4 sm:px-6 sm:py-5">
+                        <div class="mt-6 w-full max-w-[420px] border-refined rounded-2xl bg-darkGray/25 px-5 py-4 sm:px-6 sm:py-5">
                             <div class="flex items-center justify-between gap-3 mb-3">
                                 <span class="text-xs uppercase tracking-[0.2em] text-accent/85"><span class="i18n-zh">核心三点</span><span class="i18n-en">3 Key Threads</span></span>
                                 <span class="text-xs text-white/45"><span class="i18n-zh">PC 优先排版</span><span class="i18n-en">PC-first layout</span></span>
@@ -547,24 +548,33 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             container.appendChild(renderer.domElement);
 
-            var particlesGeometry = new THREE.BufferGeometry();
-            var n = 420;
-            var pos = new Float32Array(n * 3);
-            for (var i = 0; i < n * 3; i++) pos[i] = (Math.random() - 0.5) * 10;
-            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-            var particlesMaterial = new THREE.PointsMaterial({
-                size: 0.004,
-                color: 0x5eead4,
-                transparent: true,
-                opacity: 0.35
-            });
-            var mesh = new THREE.Points(particlesGeometry, particlesMaterial);
-            scene.add(mesh);
+            // Two-layer particles: cyan space dust + amber signal nodes
+            function makeLayer(count, spread, color, opacity, size) {
+                var particlesGeometry = new THREE.BufferGeometry();
+                var pos = new Float32Array(count * 3);
+                for (var i = 0; i < count * 3; i++) pos[i] = (Math.random() - 0.5) * spread;
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+                var particlesMaterial = new THREE.PointsMaterial({
+                    size: size,
+                    color: color,
+                    transparent: true,
+                    opacity: opacity
+                });
+                return new THREE.Points(particlesGeometry, particlesMaterial);
+            }
+
+            var meshPrimary = makeLayer(820, 12, 0x22D3EE, 0.28, 0.0036);
+            var meshAccent = makeLayer(260, 9, 0xFF9F43, 0.36, 0.0042);
+            scene.add(meshPrimary);
+            scene.add(meshAccent);
             camera.position.z = 3;
 
             function tick() {
                 requestAnimationFrame(tick);
-                mesh.rotation.y += 0.00025;
+                meshPrimary.rotation.y += 0.00035;
+                meshPrimary.rotation.x += 0.00008;
+                meshAccent.rotation.y -= 0.00022;
+                meshAccent.rotation.x += 0.00005;
                 renderer.render(scene, camera);
             }
             tick();
@@ -579,9 +589,9 @@
         }
 
         var chartColors = {
-            c1: 'rgba(94, 234, 212, 0.75)',
-            c2: 'rgba(234, 140, 58, 0.75)',
-            c3: 'rgba(100, 116, 139, 0.65)'
+            c1: 'rgba(34, 211, 238, 0.75)',
+            c2: 'rgba(255, 159, 67, 0.75)',
+            c3: 'rgba(167, 139, 250, 0.62)'
         };
         var resultsChartCtx = document.getElementById('resultsChart').getContext('2d');
         new Chart(resultsChartCtx, {
@@ -651,8 +661,10 @@
             if (!holder || typeof THREE === 'undefined') return;
 
             var scene = new THREE.Scene();
-            var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
-            camera.position.z = 5.2;
+            // Fog + transparency-by-depth to strengthen 3D space perception
+            scene.fog = new THREE.FogExp2(0x040A16, 0.35);
+            var camera = new THREE.PerspectiveCamera(45, 1, 0.1, 200);
+            camera.position.z = 7.2;
 
             var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -661,28 +673,30 @@
             var group = new THREE.Group();
             scene.add(group);
 
-            var sphereGeo = new THREE.SphereGeometry(0.11, 20, 20);
-            var sphereMatHi = new THREE.MeshBasicMaterial({ color: 0x5eead4 });
+            var graphRadius = 1.75;
+            var sphereGeo = new THREE.SphereGeometry(0.13, 20, 20);
+            var sphereMatHi = new THREE.MeshBasicMaterial({ color: 0x22D3EE, transparent: true, opacity: 0.95 });
             var meshes = [];
-            var positions = fibSpherePoints(skillNodes.length, 1.35);
+            var positions = fibSpherePoints(skillNodes.length, graphRadius);
 
             for (var i = 0; i < positions.length; i++) {
-                var idleMat = new THREE.MeshBasicMaterial({ color: 0xea8c3a });
+                var idleMat = new THREE.MeshBasicMaterial({ color: 0xFF9F43, transparent: true, opacity: 0.32 });
                 var m = new THREE.Mesh(sphereGeo, idleMat);
                 m.position.set(positions[i].x, positions[i].y, positions[i].z);
                 m.userData.index = i;
                 m.userData.idleMat = idleMat;
+                m.userData.baseScale = 1;
                 group.add(m);
                 meshes.push(m);
             }
 
             var lineMatDim = new THREE.LineBasicMaterial({
-                color: 0x5eead4,
+                color: 0x22D3EE,
                 transparent: true,
                 opacity: 0.08
             });
             var lineMatHi = new THREE.LineBasicMaterial({
-                color: 0x5eead4,
+                color: 0x22D3EE,
                 transparent: true,
                 opacity: 0.62
             });
@@ -692,7 +706,7 @@
                     var da = meshes[a].position;
                     var db = meshes[b].position;
                     var dist = da.distanceTo(db);
-                    if (dist < 1.55) {
+                    if (dist < 2.25) {
                         var geo = new THREE.BufferGeometry().setFromPoints([da.clone(), db.clone()]);
                         var line = new THREE.Line(geo, lineMatDim);
                         line.userData.a = a;
@@ -708,6 +722,7 @@
             var hovered = null;
             var selected = null;
             var activeLinesIdx = null;
+            var tooltipIdx = null;
             var dragging = false;
             var prevX = 0, prevY = 0;
 
@@ -723,6 +738,18 @@
                         line.material = lineMatDim;
                     }
                 }
+            }
+
+            function setTooltipForIndex(idx) {
+                tooltipIdx = idx;
+                if (idx === null || idx === undefined) {
+                    tooltip.classList.add('hidden');
+                    tooltipIdx = null;
+                    return;
+                }
+                var sn = skillNodes[idx];
+                tooltip.innerHTML = '<span class="text-primary/90">' + sn.zh + '</span><br><span class="text-white/50 text-[11px] mt-1 block">' + sn.en + '</span>';
+                tooltip.classList.remove('hidden');
             }
 
             function resize() {
@@ -755,19 +782,15 @@
                     var idx = hits[0].object.userData.index;
                     if (hovered !== idx) {
                         hovered = idx;
-                        var sn = skillNodes[idx];
-                        tooltip.innerHTML = '<span class="text-primary/90">' + sn.zh + '</span><br><span class="text-white/50 text-[11px] mt-1 block">' + sn.en + '</span>';
-                        tooltip.classList.remove('hidden');
+                        if (selected === null) setTooltipForIndex(idx);
                         setLinesActive();
                     }
-                    tooltip.style.left = (e.clientX + 14) + 'px';
-                    tooltip.style.top = (e.clientY + 14) + 'px';
                 } else {
                     if (hovered !== null) {
                         hovered = null;
                         setLinesActive();
                     }
-                    tooltip.classList.add('hidden');
+                    if (selected === null) setTooltipForIndex(null);
                 }
             });
 
@@ -785,25 +808,21 @@
                     selected = selected === idx ? null : idx;
                     hovered = selected;
                     if (selected !== null) {
-                        var sn = skillNodes[selected];
-                        tooltip.innerHTML = '<span class="text-primary/90">' + sn.zh + '</span><br><span class="text-white/50 text-[11px] mt-1 block">' + sn.en + '</span>';
-                        tooltip.classList.remove('hidden');
-                        tooltip.style.left = (e.clientX + 14) + 'px';
-                        tooltip.style.top = (e.clientY + 14) + 'px';
+                        setTooltipForIndex(selected);
                     }
                 } else {
                     selected = null;
                     hovered = null;
-                    tooltip.classList.add('hidden');
+                    setTooltipForIndex(null);
                 }
                 setLinesActive();
             });
             holder.addEventListener('pointerup', function () { dragging = false; });
             holder.addEventListener('pointerleave', function () {
                 dragging = false;
-                tooltip.classList.add('hidden');
                 hovered = null;
                 setLinesActive();
+                if (selected === null) setTooltipForIndex(null);
             });
 
             function animate() {
@@ -811,14 +830,35 @@
                 if (!dragging) group.rotation.y += 0.0012;
                 var activeIdx = selected !== null ? selected : hovered;
                 var now = Date.now();
-                var pulse = selected !== null ? (1 + 0.05 * Math.sin(now / 180)) : 1;
+                var pulse = selected !== null ? (1 + 0.06 * Math.sin(now / 180)) : 1;
+
+                // Tooltip position anchored to the active node (projected into screen space)
+                if (activeIdx !== null && activeIdx !== undefined) {
+                    if (tooltipIdx !== activeIdx) setTooltipForIndex(activeIdx);
+                    var v = meshes[activeIdx].position.clone();
+                    v.project(camera);
+                    var drect = renderer.domElement.getBoundingClientRect();
+                    var x = drect.left + (v.x + 1) / 2 * drect.width;
+                    var y = drect.top + (-v.y + 1) / 2 * drect.height;
+                    tooltip.style.left = (x + 14) + 'px';
+                    tooltip.style.top = (y + 14) + 'px';
+                } else if (tooltipIdx !== null) {
+                    setTooltipForIndex(null);
+                }
+
                 for (var i = 0; i < meshes.length; i++) {
+                    var depth = (meshes[i].position.z / graphRadius + 1) / 2; // 0..1
+                    depth = Math.max(0, Math.min(1, depth));
+                    var s = meshes[i].userData.baseScale * (0.85 + depth * 0.35);
+
                     if (activeIdx !== null && i === activeIdx) {
                         meshes[i].material = sphereMatHi;
-                        meshes[i].scale.setScalar(1.12 * pulse);
+                        meshes[i].scale.setScalar(1.18 * s * pulse);
+                        meshes[i].material.opacity = 0.65 + 0.35 * depth;
                     } else {
                         meshes[i].material = meshes[i].userData.idleMat;
-                        meshes[i].scale.setScalar(1);
+                        meshes[i].scale.setScalar(s);
+                        meshes[i].material.opacity = 0.12 + 0.55 * depth;
                     }
                 }
                 renderer.render(scene, camera);
