@@ -15,10 +15,10 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#22D3EE',
-                        secondary: '#A78BFA',
-                        accent: '#FF9F43',
-                        dark: '#040A16',
+                        primary: '#38BDF8',
+                        secondary: '#818CF8',
+                        accent: '#A5B4FC',
+                        dark: '#020617',
                         darkGray: '#0B1327',
                         lightGray: '#121C36'
                     },
@@ -39,36 +39,36 @@
             }
             .bg-grid {
                 background-image:
-                    radial-gradient(ellipse at top, rgba(34, 211, 238, 0.14) 0%, rgba(34, 211, 238, 0.06) 25%, transparent 60%),
-                    linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255, 159, 67, 0.028) 1px, transparent 1px);
+                    radial-gradient(ellipse at top, rgba(56, 189, 248, 0.12) 0%, rgba(129, 140, 248, 0.05) 30%, transparent 60%),
+                    linear-gradient(rgba(56, 189, 248, 0.045) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(129, 140, 248, 0.04) 1px, transparent 1px);
                 background-size: 36px 36px;
             }
             .glass {
                 backdrop-filter: blur(16px);
                 -webkit-backdrop-filter: blur(16px);
-                background: rgba(7, 12, 26, 0.64);
-                border: 1px solid rgba(255, 255, 255, 0.10);
+                background: rgba(6, 11, 24, 0.72);
+                border: 1px solid rgba(255, 255, 255, 0.09);
                 box-shadow:
-                    0 0 0 1px rgba(255, 159, 67, 0.06),
-                    0 24px 90px rgba(0, 0, 0, 0.42);
+                    0 0 0 1px rgba(56, 189, 248, 0.08),
+                    0 24px 90px rgba(0, 0, 0, 0.48);
             }
             .border-refined {
                 border: 1px solid rgba(255, 255, 255, 0.11);
                 box-shadow:
-                    0 0 0 1px rgba(34, 211, 238, 0.08),
-                    0 0 38px rgba(34, 211, 238, 0.06);
+                    0 0 0 1px rgba(56, 189, 248, 0.09),
+                    0 0 38px rgba(129, 140, 248, 0.06);
             }
             .border-refined:hover {
-                border-color: rgba(255, 159, 67, 0.25);
+                border-color: rgba(129, 140, 248, 0.35);
                 box-shadow:
-                    0 0 0 1px rgba(255, 159, 67, 0.15),
-                    0 0 60px rgba(34, 211, 238, 0.12),
+                    0 0 0 1px rgba(56, 189, 248, 0.18),
+                    0 0 60px rgba(129, 140, 248, 0.1),
                     0 26px 90px rgba(0, 0, 0, 0.45);
             }
             .btn-primary {
-                background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(255, 159, 67, 0.12));
-                border: 1px solid rgba(255, 159, 67, 0.40);
+                background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(129, 140, 248, 0.14));
+                border: 1px solid rgba(56, 189, 248, 0.45);
             }
         }
         html.lang-en .i18n-zh { display: none !important; }
@@ -84,12 +84,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="font-inter bg-dark text-white overflow-x-hidden antialiased">
-    <div id="particles-bg" class="fixed inset-0 z-0 pointer-events-none opacity-60"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_120%_80%_at_50%_-15%,rgba(56,189,248,0.14),transparent_55%),radial-gradient(ellipse_90%_60%_at_100%_30%,rgba(129,140,248,0.11),transparent_50%),radial-gradient(ellipse_70%_50%_at_0%_80%,rgba(30,58,138,0.2),transparent_45%)]"></div>
+    <div id="particles-bg" class="fixed inset-0 z-0 pointer-events-none opacity-[0.55]"></div>
 
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/[0.06]">
         <div class="container mx-auto px-4 sm:px-6 py-3 md:py-4 flex justify-between items-center">
             <a href="#hero" class="font-poppins font-semibold text-lg tracking-tight group">
-                <span class="text-accent">amber</span><span class="text-white/90">.site</span>
+                <span class="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">amber</span><span class="text-slate-400">.site</span>
             </a>
             <div class="hidden lg:flex items-center gap-10 text-sm">
                 <a href="#hero" class="text-white/70 hover:text-primary transition-colors tracking-wide nav-desktop"><span class="i18n-zh">首页</span><span class="i18n-en">Home</span></a>
@@ -100,7 +101,7 @@
                 <a href="#contact" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">联系</span><span class="i18n-en">Contact</span></a>
             </div>
             <div class="flex items-center gap-3">
-                <button type="button" id="lang-toggle" class="text-xs uppercase tracking-[0.2em] px-3 py-1.5 rounded-md border border-white/10 text-white/60 hover:text-accent hover:border-accent/40 transition-colors" aria-label="Switch language">中 / EN</button>
+                <button type="button" id="lang-toggle" class="text-xs uppercase tracking-[0.2em] px-3 py-1.5 rounded-md border border-white/10 text-white/60 hover:text-primary hover:border-primary/35 transition-colors" aria-label="Switch language">中 / EN</button>
                 <button type="button" id="nav-open" class="lg:hidden text-white/80 p-2 rounded-md border border-white/10 hover:bg-white/5" aria-expanded="false" aria-controls="mobile-panel">
                     <i class="fa fa-bars text-lg"></i>
                 </button>
@@ -123,8 +124,8 @@
         <div class="container mx-auto px-4 sm:px-6 z-10 relative">
             <div class="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-16">
                 <div class="lg:w-[55%] order-2 lg:order-1">
-                    <div class="hero-line h-px w-16 md:w-24 bg-gradient-to-r from-accent/80 to-primary/60 mb-8 origin-left"></div>
-                    <p class="hero-reveal text-accent/90 text-xs md:text-sm tracking-[0.35em] uppercase mb-4 font-medium">AI Product Manager</p>
+                    <div class="hero-line h-px w-16 md:w-24 bg-gradient-to-r from-primary via-secondary to-primary/70 mb-8 origin-left opacity-90"></div>
+                    <p class="hero-reveal text-secondary/90 text-xs md:text-sm tracking-[0.35em] uppercase mb-4 font-medium">AI Product Manager</p>
                     <h1 class="hero-reveal font-poppins font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-[3.25rem] leading-tight mb-2">
                         <span class="i18n-zh text-white">AI 产品经理</span>
                         <span class="i18n-en text-white">AI Product Manager</span>
@@ -132,7 +133,7 @@
                     <p class="hero-reveal text-2xl md:text-3xl font-light text-white/50 mb-6 font-poppins">
                         <span class="text-white/80">柏馨睿</span>
                         <span class="mx-2 text-white/30">/</span>
-                        <span class="text-accent">Amber</span>
+                        <span class="text-primary">Amber</span>
                     </p>
                     <p class="hero-reveal text-white/55 text-base md:text-lg leading-relaxed max-w-xl mb-10 font-light">
                         <span class="i18n-zh">聚焦 To B 场景下的 AI 系统设计与落地，串联需求、研发与流程，推动可度量的业务结果。</span>
@@ -140,19 +141,19 @@
                     </p>
                     <div class="hero-reveal flex flex-wrap gap-2.5 mb-10">
                         <span class="px-3 py-1.5 rounded-full text-xs md:text-sm border border-primary/25 bg-primary/5 text-primary/90 tracking-wide"><span class="i18n-zh">3年央企项目经理</span><span class="i18n-en">3Y+ State-owned Enterprise PM</span></span>
-                        <span class="px-3 py-1.5 rounded-full text-xs md:text-sm border border-accent/30 bg-accent/5 text-accent/90 tracking-wide"><span class="i18n-zh">售后全业务域流程搭建</span><span class="i18n-en">End-to-end after-sales workflows</span></span>
+                        <span class="px-3 py-1.5 rounded-full text-xs md:text-sm border border-secondary/35 bg-secondary/10 text-secondary/95 tracking-wide"><span class="i18n-zh">售后全业务域流程搭建</span><span class="i18n-en">End-to-end after-sales workflows</span></span>
                         <span class="px-3 py-1.5 rounded-full text-xs md:text-sm border border-white/10 bg-white/[0.03] text-white/70 tracking-wide"><span class="i18n-zh">AI项目 0-1</span><span class="i18n-en">AI projects from 0 to 1</span></span>
                     </div>
                     <div class="hero-reveal flex flex-wrap gap-4">
-                        <a href="#projects" class="btn-primary text-white font-medium px-8 py-3 rounded-lg transition hover:border-accent/50 text-sm md:text-base magnetic"><span class="i18n-zh">查看项目</span><span class="i18n-en">View projects</span></a>
-                        <a href="#contact" class="border border-white/15 text-white/85 font-medium px-8 py-3 rounded-lg hover:bg-white/[0.04] transition text-sm md:text-base magnetic"><span class="i18n-zh">联系我</span><span class="i18n-en">Contact</span></a>
+                        <a href="#projects" class="btn-primary text-white font-medium px-8 py-3 rounded-lg transition hover:border-primary/60 text-sm md:text-base magnetic"><span class="i18n-zh">查看项目</span><span class="i18n-en">View projects</span></a>
+                        <a href="#contact" class="border border-white/15 text-white/85 font-medium px-8 py-3 rounded-lg hover:bg-white/[0.04] hover:border-primary/25 transition text-sm md:text-base magnetic"><span class="i18n-zh">联系我</span><span class="i18n-en">Contact</span></a>
                     </div>
                 </div>
                 <div class="lg:w-[45%] flex justify-center order-1 lg:order-2">
                     <div class="hero-photo relative flex flex-col items-center">
                         <div class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72">
-                            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/12 via-secondary/10 to-accent/10 opacity-90"></div>
-                            <div class="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-primary/40 via-secondary/10 to-accent/35">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/14 via-secondary/12 to-indigo-950/30 opacity-90"></div>
+                            <div class="relative w-full h-full rounded-full p-[2px] bg-gradient-to-br from-primary/45 via-secondary/25 to-indigo-500/35">
                                 <div class="w-full h-full rounded-full overflow-hidden bg-darkGray border border-white/[0.08]">
                                     <img src="images/avatar.jpg" alt="柏馨睿 Amber" class="w-full h-full object-cover" id="avatar-img" width="512" height="512">
                                 </div>
@@ -162,13 +163,13 @@
 
                         <div class="mt-6 w-full max-w-[420px] border-refined rounded-2xl bg-darkGray/25 px-5 py-4 sm:px-6 sm:py-5">
                             <div class="flex items-center justify-between gap-3 mb-3">
-                                <span class="text-xs uppercase tracking-[0.2em] text-accent/85"><span class="i18n-zh">核心三点</span><span class="i18n-en">3 Key Threads</span></span>
+                                <span class="text-xs uppercase tracking-[0.2em] text-primary/90"><span class="i18n-zh">核心三点</span><span class="i18n-en">3 Key Threads</span></span>
                                 <span class="text-xs text-white/45"><span class="i18n-zh">PC 优先排版</span><span class="i18n-en">PC-first layout</span></span>
                             </div>
                             <div class="space-y-2 text-sm text-white/70">
                                 <div class="flex items-center justify-between gap-3">
                                     <span class="i18n-zh">3年央企项目经理</span><span class="i18n-en">3Y+ State-owned Enterprise PM</span>
-                                    <span class="text-accent/90 font-medium">01</span>
+                                    <span class="text-secondary/90 font-medium">01</span>
                                 </div>
                                 <div class="flex items-center justify-between gap-3">
                                     <span class="i18n-zh">售后全业务域流程搭建</span><span class="i18n-en">End-to-end after-sales workflows</span>
@@ -285,14 +286,12 @@
                     <span class="i18n-en">Skill constellation</span>
                 </h2>
                 <p class="text-white/45 text-sm md:text-base font-light">
-                    <span class="i18n-zh">三维节点与连线可拖拽视角（桌面）；悬停节点查看能力域。</span>
-                    <span class="i18n-en">3D nodes and edges — drag to orbit on desktop; hover nodes for domains.</span>
+                    <span class="i18n-zh">每个节点带技能名称（中英）；拖拽旋转视角，悬停或点击高亮连线。</span>
+                    <span class="i18n-en">Each node shows a skill (ZH + EN); drag to orbit, hover or click to highlight edges.</span>
                 </p>
             </div>
             <div class="rounded-2xl border-refined bg-darkGray/25 overflow-hidden mb-12">
-                <div id="skill-graph" class="relative w-full h-[min(420px,55vh)] md:h-[min(480px,50vh)] touch-none">
-                    <div id="skill-tooltip" class="pointer-events-none fixed z-[100] hidden px-3 py-2 rounded-lg glass text-xs text-white/90 max-w-[220px] border border-white/10 shadow-xl"></div>
-                </div>
+                <div id="skill-graph" class="relative w-full h-[min(420px,55vh)] md:h-[min(480px,50vh)] touch-none"></div>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 text-xs md:text-sm text-white/55">
                 <div class="border-refined rounded-xl p-4 bg-darkGray/20"><span class="text-primary/90 block mb-2 font-medium tracking-wide">AI</span>LLM · Agent · RAG</div>
@@ -407,7 +406,7 @@
                 </div>
                 <div class="rounded-2xl border-refined p-6 md:p-8 bg-darkGray/25 flex flex-col justify-center transition-transform hover:-translate-y-0.5 hover:shadow-[0_18px_60px_rgba(0,0,0,0.45)]">
                     <p class="text-xs uppercase tracking-[0.2em] text-white/35 mb-3"><span class="i18n-zh">电话</span><span class="i18n-en">Phone</span></p>
-                    <a href="tel:+8610000000000" id="phone-link" class="text-xl md:text-2xl font-poppins text-white/90 hover:text-accent transition-colors break-all">+86 请替换</a>
+                    <a href="tel:+8610000000000" id="phone-link" class="text-xl md:text-2xl font-poppins text-white/90 hover:text-primary transition-colors break-all">+86 请替换</a>
                     <p class="text-white/30 text-xs mt-3 i18n-zh">在页面底部脚本中修改 PHONE_DISPLAY 与 PHONE_TEL</p>
                     <p class="text-white/30 text-xs mt-3 i18n-en">Edit PHONE_DISPLAY & PHONE_TEL in the script</p>
                 </div>
@@ -423,7 +422,7 @@
 
     <footer class="py-12 relative border-t border-white/[0.06]">
         <div class="container mx-auto px-4 sm:px-6 text-center">
-            <p class="font-poppins text-lg text-white/80 mb-1">amber<span class="text-white/35">个人网站</span></p>
+            <p class="font-poppins text-lg mb-1"><span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">amber</span><span class="text-white/40">个人网站</span></p>
             <p class="text-xs text-white/30 tracking-[0.2em] uppercase mb-6">Amber · AI Product Manager</p>
             <p class="text-white/25 text-sm">&copy; 2026 <span class="i18n-zh">柏馨睿</span><span class="i18n-en">Amber</span>. <span class="i18n-zh">保留所有权利。</span><span class="i18n-en">All rights reserved.</span></p>
         </div>
@@ -440,7 +439,7 @@
             const magneticEls = document.querySelectorAll('.magnetic');
             magneticEls.forEach(el => {
                 let raf = 0;
-                const strength = 9; // keep it subtle
+                const strength = 5;
                 const scale = 1.015;
                 const reset = () => {
                     cancelAnimationFrame(raf);
@@ -512,6 +511,7 @@
             const html = document.documentElement;
             html.classList.toggle('lang-en');
             html.lang = html.classList.contains('lang-en') ? 'en' : 'zh-CN';
+            if (typeof window.__updateSkillGraphLabels === 'function') window.__updateSkillGraphLabels();
         });
 
         const mobilePanel = document.getElementById('mobile-panel');
@@ -548,7 +548,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             container.appendChild(renderer.domElement);
 
-            // Two-layer particles: cyan space dust + amber signal nodes
+            // Two-layer particles: cyan + indigo (deep blue space)
             function makeLayer(count, spread, color, opacity, size) {
                 var particlesGeometry = new THREE.BufferGeometry();
                 var pos = new Float32Array(count * 3);
@@ -563,8 +563,8 @@
                 return new THREE.Points(particlesGeometry, particlesMaterial);
             }
 
-            var meshPrimary = makeLayer(820, 12, 0x22D3EE, 0.28, 0.0036);
-            var meshAccent = makeLayer(260, 9, 0xFF9F43, 0.36, 0.0042);
+            var meshPrimary = makeLayer(820, 12, 0x38BDF8, 0.26, 0.0036);
+            var meshAccent = makeLayer(260, 9, 0x818CF8, 0.32, 0.0042);
             scene.add(meshPrimary);
             scene.add(meshAccent);
             camera.position.z = 3;
@@ -589,9 +589,9 @@
         }
 
         var chartColors = {
-            c1: 'rgba(34, 211, 238, 0.75)',
-            c2: 'rgba(255, 159, 67, 0.75)',
-            c3: 'rgba(167, 139, 250, 0.62)'
+            c1: 'rgba(56, 189, 248, 0.78)',
+            c2: 'rgba(129, 140, 248, 0.78)',
+            c3: 'rgba(165, 180, 252, 0.65)'
         };
         var resultsChartCtx = document.getElementById('resultsChart').getContext('2d');
         new Chart(resultsChartCtx, {
@@ -655,14 +655,53 @@
             { zh: '跨部门协同交付', en: 'Cross-team delivery' }
         ];
 
+        function buildSkillLabelTexture(sn) {
+            var langEn = document.documentElement.classList.contains('lang-en');
+            var main = langEn ? sn.en : sn.zh;
+            var sub = langEn ? sn.zh : sn.en;
+            if (main.length > 22) main = main.slice(0, 21) + '…';
+            if (sub.length > 28) sub = sub.slice(0, 27) + '…';
+            var canvas = document.createElement('canvas');
+            var w = 512;
+            var h = 120;
+            canvas.width = w;
+            canvas.height = h;
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = 'rgba(6, 11, 26, 0.94)';
+            if (typeof ctx.roundRect === 'function') {
+                ctx.beginPath();
+                ctx.roundRect(6, 6, w - 12, h - 12, 12);
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(56, 189, 248, 0.42)';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            } else {
+                ctx.fillRect(6, 6, w - 12, h - 12);
+                ctx.strokeStyle = 'rgba(56, 189, 248, 0.42)';
+                ctx.lineWidth = 1.5;
+                ctx.strokeRect(6.75, 6.75, w - 13.5, h - 13.5);
+            }
+            ctx.fillStyle = '#f1f5f9';
+            ctx.font = '600 24px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(main, w / 2, 42);
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.92)';
+            ctx.font = '400 16px Inter, system-ui, sans-serif';
+            ctx.fillText(sub, w / 2, 82);
+            var tex = new THREE.CanvasTexture(canvas);
+            if (THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
+            tex.needsUpdate = true;
+            return tex;
+        }
+
         function initSkillGraph() {
             var holder = document.getElementById('skill-graph');
-            var tooltip = document.getElementById('skill-tooltip');
             if (!holder || typeof THREE === 'undefined') return;
 
             var scene = new THREE.Scene();
-            // Fog + transparency-by-depth to strengthen 3D space perception
-            scene.fog = new THREE.FogExp2(0x040A16, 0.35);
+            scene.fog = new THREE.FogExp2(0x020617, 0.34);
             var camera = new THREE.PerspectiveCamera(45, 1, 0.1, 200);
             camera.position.z = 7.2;
 
@@ -675,12 +714,16 @@
 
             var graphRadius = 1.75;
             var sphereGeo = new THREE.SphereGeometry(0.13, 20, 20);
-            var sphereMatHi = new THREE.MeshBasicMaterial({ color: 0x22D3EE, transparent: true, opacity: 0.95 });
+            var sphereMatHi = new THREE.MeshBasicMaterial({ color: 0x38BDF8, transparent: true, opacity: 0.95 });
             var meshes = [];
+            var labelSprites = [];
             var positions = fibSpherePoints(skillNodes.length, graphRadius);
+            var tmpPos = new THREE.Vector3();
+            var tmpOut = new THREE.Vector3();
+            var tmpToCam = new THREE.Vector3();
 
             for (var i = 0; i < positions.length; i++) {
-                var idleMat = new THREE.MeshBasicMaterial({ color: 0xFF9F43, transparent: true, opacity: 0.32 });
+                var idleMat = new THREE.MeshBasicMaterial({ color: 0x818CF8, transparent: true, opacity: 0.35 });
                 var m = new THREE.Mesh(sphereGeo, idleMat);
                 m.position.set(positions[i].x, positions[i].y, positions[i].z);
                 m.userData.index = i;
@@ -688,17 +731,41 @@
                 m.userData.baseScale = 1;
                 group.add(m);
                 meshes.push(m);
+
+                var tex = buildSkillLabelTexture(skillNodes[i]);
+                var smat = new THREE.SpriteMaterial({
+                    map: tex,
+                    transparent: true,
+                    opacity: 0.92,
+                    depthWrite: false,
+                    depthTest: true
+                });
+                var sp = new THREE.Sprite(smat);
+                sp.position.set(positions[i].x, positions[i].y + 0.44, positions[i].z);
+                sp.userData.index = i;
+                sp.scale.set(1.45, 0.36, 1);
+                group.add(sp);
+                labelSprites.push(sp);
             }
 
+            window.__updateSkillGraphLabels = function () {
+                for (var j = 0; j < labelSprites.length; j++) {
+                    var mat = labelSprites[j].material;
+                    if (mat.map) mat.map.dispose();
+                    mat.map = buildSkillLabelTexture(skillNodes[j]);
+                    mat.needsUpdate = true;
+                }
+            };
+
             var lineMatDim = new THREE.LineBasicMaterial({
-                color: 0x22D3EE,
+                color: 0x64748b,
                 transparent: true,
-                opacity: 0.08
+                opacity: 0.1
             });
             var lineMatHi = new THREE.LineBasicMaterial({
-                color: 0x22D3EE,
+                color: 0x38BDF8,
                 transparent: true,
-                opacity: 0.62
+                opacity: 0.58
             });
             var lines = [];
             for (var a = 0; a < meshes.length; a++) {
@@ -722,7 +789,6 @@
             var hovered = null;
             var selected = null;
             var activeLinesIdx = null;
-            var tooltipIdx = null;
             var dragging = false;
             var prevX = 0, prevY = 0;
 
@@ -738,18 +804,6 @@
                         line.material = lineMatDim;
                     }
                 }
-            }
-
-            function setTooltipForIndex(idx) {
-                tooltipIdx = idx;
-                if (idx === null || idx === undefined) {
-                    tooltip.classList.add('hidden');
-                    tooltipIdx = null;
-                    return;
-                }
-                var sn = skillNodes[idx];
-                tooltip.innerHTML = '<span class="text-primary/90">' + sn.zh + '</span><br><span class="text-white/50 text-[11px] mt-1 block">' + sn.en + '</span>';
-                tooltip.classList.remove('hidden');
             }
 
             function resize() {
@@ -782,7 +836,6 @@
                     var idx = hits[0].object.userData.index;
                     if (hovered !== idx) {
                         hovered = idx;
-                        if (selected === null) setTooltipForIndex(idx);
                         setLinesActive();
                     }
                 } else {
@@ -790,7 +843,6 @@
                         hovered = null;
                         setLinesActive();
                     }
-                    if (selected === null) setTooltipForIndex(null);
                 }
             });
 
@@ -807,13 +859,9 @@
                     var idx = hits[0].object.userData.index;
                     selected = selected === idx ? null : idx;
                     hovered = selected;
-                    if (selected !== null) {
-                        setTooltipForIndex(selected);
-                    }
                 } else {
                     selected = null;
                     hovered = null;
-                    setTooltipForIndex(null);
                 }
                 setLinesActive();
             });
@@ -822,7 +870,6 @@
                 dragging = false;
                 hovered = null;
                 setLinesActive();
-                if (selected === null) setTooltipForIndex(null);
             });
 
             function animate() {
@@ -832,22 +879,8 @@
                 var now = Date.now();
                 var pulse = selected !== null ? (1 + 0.06 * Math.sin(now / 180)) : 1;
 
-                // Tooltip position anchored to the active node (projected into screen space)
-                if (activeIdx !== null && activeIdx !== undefined) {
-                    if (tooltipIdx !== activeIdx) setTooltipForIndex(activeIdx);
-                    var v = meshes[activeIdx].position.clone();
-                    v.project(camera);
-                    var drect = renderer.domElement.getBoundingClientRect();
-                    var x = drect.left + (v.x + 1) / 2 * drect.width;
-                    var y = drect.top + (-v.y + 1) / 2 * drect.height;
-                    tooltip.style.left = (x + 14) + 'px';
-                    tooltip.style.top = (y + 14) + 'px';
-                } else if (tooltipIdx !== null) {
-                    setTooltipForIndex(null);
-                }
-
                 for (var i = 0; i < meshes.length; i++) {
-                    var depth = (meshes[i].position.z / graphRadius + 1) / 2; // 0..1
+                    var depth = (meshes[i].position.z / graphRadius + 1) / 2;
                     depth = Math.max(0, Math.min(1, depth));
                     var s = meshes[i].userData.baseScale * (0.85 + depth * 0.35);
 
@@ -858,8 +891,17 @@
                     } else {
                         meshes[i].material = meshes[i].userData.idleMat;
                         meshes[i].scale.setScalar(s);
-                        meshes[i].material.opacity = 0.12 + 0.55 * depth;
+                        meshes[i].material.opacity = 0.14 + 0.52 * depth;
                     }
+
+                    meshes[i].getWorldPosition(tmpPos);
+                    tmpOut.copy(tmpPos).normalize();
+                    tmpToCam.copy(camera.position).sub(tmpPos).normalize();
+                    var facing = tmpOut.dot(tmpToCam) > 0.08;
+                    var lo = 0.22 + 0.7 * depth;
+                    if (!facing) lo *= 0.32;
+                    if (activeIdx !== null && i === activeIdx) lo = Math.min(1, lo + 0.18);
+                    labelSprites[i].material.opacity = lo;
                 }
                 renderer.render(scene, camera);
             }
@@ -880,11 +922,10 @@
             gsap.from(sel + ' .border-refined, ' + sel + ' article', {
                 scrollTrigger: { trigger: sel, start: 'top 88%', toggleActions: 'play none none none' },
                 opacity: 0,
-                y: 22,
-                scale: 0.985,
-                filter: 'blur(12px)',
-                duration: 0.62,
-                stagger: 0.06,
+                y: 18,
+                scale: 0.99,
+                duration: 0.55,
+                stagger: 0.05,
                 ease: 'power2.out'
             });
         });
