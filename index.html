@@ -681,37 +681,40 @@
             var pad = 8;
             var rw = w - pad * 2;
             var rh = h - pad * 2;
+            /* 2D 画布使用足够亮的实色底，避免在页面上像「黑块」 */
             var g = ctx.createLinearGradient(0, 0, w, h);
-            g.addColorStop(0, 'rgba(56, 189, 248, 0.22)');
-            g.addColorStop(0.45, 'rgba(30, 41, 59, 0.97)');
-            g.addColorStop(1, 'rgba(15, 23, 42, 0.98)');
+            g.addColorStop(0, '#64748b');
+            g.addColorStop(0.5, '#475569');
+            g.addColorStop(1, '#334155');
             ctx.fillStyle = g;
             if (typeof ctx.roundRect === 'function') {
                 ctx.beginPath();
                 ctx.roundRect(pad, pad, rw, rh, 14);
                 ctx.fill();
-                ctx.strokeStyle = 'rgba(56, 189, 248, 0.65)';
-                ctx.lineWidth = 2;
+                ctx.strokeStyle = 'rgba(56, 189, 248, 0.95)';
+                ctx.lineWidth = 2.5;
                 ctx.stroke();
             } else {
                 ctx.fillRect(pad, pad, rw, rh);
-                ctx.strokeStyle = 'rgba(56, 189, 248, 0.65)';
-                ctx.lineWidth = 2;
+                ctx.strokeStyle = 'rgba(56, 189, 248, 0.95)';
+                ctx.lineWidth = 2.5;
                 ctx.strokeRect(pad + 0.5, pad + 0.5, rw - 1, rh - 1);
             }
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillStyle = '#ffffff';
-            ctx.font = '600 26px Inter, system-ui, sans-serif';
+            ctx.font = '700 26px Inter, system-ui, sans-serif';
             ctx.fillText(main, w / 2, 46);
-            ctx.fillStyle = '#cbd5e1';
-            ctx.font = '500 17px Inter, system-ui, sans-serif';
+            ctx.fillStyle = '#f1f5f9';
+            ctx.font = '600 17px Inter, system-ui, sans-serif';
             ctx.fillText(sub, w / 2, 88);
             var tex = new THREE.CanvasTexture(canvas);
             if (THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
             tex.needsUpdate = true;
             tex.minFilter = THREE.LinearFilter;
+            tex.magFilter = THREE.LinearFilter;
             tex.generateMipmaps = false;
+            tex.flipY = true;
             return tex;
         }
 
@@ -728,6 +731,9 @@
             var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             if (THREE.SRGBColorSpace) renderer.outputColorSpace = THREE.SRGBColorSpace;
+            /* 默认 ACESFilmic 会把 Canvas 标签纹理整体压暗，看起来像黑底灰字 */
+            renderer.toneMapping = THREE.NoToneMapping;
+            renderer.toneMappingExposure = 1;
             holder.appendChild(renderer.domElement);
 
             var group = new THREE.Group();
@@ -769,9 +775,10 @@
                     transparent: true,
                     opacity: 1,
                     depthWrite: false,
-                    depthTest: true,
+                    depthTest: false,
                     fog: false,
-                    sizeAttenuation: true
+                    sizeAttenuation: true,
+                    premultipliedAlpha: false
                 });
                 var sp = new THREE.Sprite(smat);
                 sp.position.set(positions[i].x, positions[i].y + 0.44, positions[i].z);
