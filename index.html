@@ -669,16 +669,16 @@
             var langEn = document.documentElement.classList.contains('lang-en');
             var main = langEn ? sn.en : sn.zh;
             var sub = langEn ? sn.zh : sn.en;
-            if (main.length > 22) main = main.slice(0, 21) + '…';
-            if (sub.length > 28) sub = sub.slice(0, 27) + '…';
+            if (main.length > 26) main = main.slice(0, 25) + '…';
+            if (sub.length > 34) sub = sub.slice(0, 33) + '…';
             var canvas = document.createElement('canvas');
-            var w = 512;
-            var h = 128;
+            var w = 896;
+            var h = 176;
             canvas.width = w;
             canvas.height = h;
             var ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, w, h);
-            var pad = 8;
+            var pad = 12;
             var rw = w - pad * 2;
             var rh = h - pad * 2;
             /* 2D 画布使用足够亮的实色底，避免在页面上像「黑块」 */
@@ -689,25 +689,25 @@
             ctx.fillStyle = g;
             if (typeof ctx.roundRect === 'function') {
                 ctx.beginPath();
-                ctx.roundRect(pad, pad, rw, rh, 14);
+                ctx.roundRect(pad, pad, rw, rh, 16);
                 ctx.fill();
                 ctx.strokeStyle = 'rgba(56, 189, 248, 0.95)';
-                ctx.lineWidth = 2.5;
+                ctx.lineWidth = 3;
                 ctx.stroke();
             } else {
                 ctx.fillRect(pad, pad, rw, rh);
                 ctx.strokeStyle = 'rgba(56, 189, 248, 0.95)';
-                ctx.lineWidth = 2.5;
+                ctx.lineWidth = 3;
                 ctx.strokeRect(pad + 0.5, pad + 0.5, rw - 1, rh - 1);
             }
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillStyle = '#ffffff';
-            ctx.font = '700 26px Inter, system-ui, sans-serif';
-            ctx.fillText(main, w / 2, 46);
+            ctx.font = '700 38px Inter, system-ui, sans-serif';
+            ctx.fillText(main, w / 2, 62);
             ctx.fillStyle = '#f1f5f9';
-            ctx.font = '600 17px Inter, system-ui, sans-serif';
-            ctx.fillText(sub, w / 2, 88);
+            ctx.font = '600 23px Inter, system-ui, sans-serif';
+            ctx.fillText(sub, w / 2, 124);
             var tex = new THREE.CanvasTexture(canvas);
             if (THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
             tex.needsUpdate = true;
@@ -783,7 +783,7 @@
                 var sp = new THREE.Sprite(smat);
                 sp.position.set(positions[i].x, positions[i].y + 0.44, positions[i].z);
                 sp.userData.index = i;
-                sp.scale.set(1.62, 0.4, 1);
+                sp.scale.set(2.05, 0.52, 1);
                 group.add(sp);
                 labelSprites.push(sp);
             }
