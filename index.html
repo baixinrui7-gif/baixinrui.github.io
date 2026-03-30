@@ -6,7 +6,6 @@
     <title>amber个人网站 | Amber — AI Product Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -86,6 +85,14 @@
         #skill-graph canvas { display: block; width: 100%; height: 100%; outline: none; }
         .magnetic { will-change: transform; transform: translate3d(0,0,0); }
         .border-refined { will-change: transform, box-shadow, border-color; }
+        @media (min-width: 1024px) {
+            .pc-readable { font-size: 17px; }
+            .pc-readable .text-xs { font-size: 0.86rem !important; line-height: 1.5 !important; }
+            .pc-readable .text-sm { font-size: 0.98rem !important; line-height: 1.65 !important; }
+            .pc-readable .text-base { font-size: 1.08rem !important; line-height: 1.8 !important; }
+            .pc-readable .text-lg { font-size: 1.24rem !important; line-height: 1.72 !important; }
+            .pc-readable h2 { letter-spacing: 0.01em; }
+        }
         @media (prefers-reduced-motion: reduce) {
             .magnetic { transform: none !important; }
             #particles-bg { display: none !important; }
@@ -93,7 +100,7 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="font-inter bg-dark text-white overflow-x-hidden antialiased">
+<body class="pc-readable font-inter bg-dark text-white overflow-x-hidden antialiased">
     <div class="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_120%_80%_at_50%_-15%,rgba(56,189,248,0.14),transparent_55%),radial-gradient(ellipse_90%_60%_at_100%_30%,rgba(129,140,248,0.11),transparent_50%),radial-gradient(ellipse_70%_50%_at_0%_80%,rgba(30,58,138,0.2),transparent_45%)]"></div>
     <div id="particles-bg" class="fixed inset-0 z-0 pointer-events-none opacity-[0.55]"></div>
 
@@ -107,7 +114,7 @@
                 <a href="#about" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">关于</span><span class="i18n-en">About</span></a>
                 <a href="#projects" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">项目</span><span class="i18n-en">Projects</span></a>
                 <a href="#skills" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">技能</span><span class="i18n-en">Skills</span></a>
-                <a href="#docs" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">文档</span><span class="i18n-en">Documents</span></a>
+                <a href="#docs" class="hidden text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">文档</span><span class="i18n-en">Documents</span></a>
                 <a href="#contact" class="text-white/70 hover:text-primary transition-colors nav-desktop"><span class="i18n-zh">联系</span><span class="i18n-en">Contact</span></a>
             </div>
             <div class="flex items-center gap-3">
@@ -123,7 +130,7 @@
                 <a href="#about" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">关于</span><span class="i18n-en">About</span></a>
                 <a href="#projects" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">项目</span><span class="i18n-en">Projects</span></a>
                 <a href="#skills" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">技能</span><span class="i18n-en">Skills</span></a>
-                <a href="#docs" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">文档</span><span class="i18n-en">Documents</span></a>
+                <a href="#docs" class="mobile-link hidden py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">文档</span><span class="i18n-en">Documents</span></a>
                 <a href="#contact" class="mobile-link py-3 px-2 rounded-lg hover:bg-white/5 text-white/85"><span class="i18n-zh">联系</span><span class="i18n-en">Contact</span></a>
             </div>
         </div>
@@ -210,10 +217,18 @@
                 <span class="i18n-zh">关于我</span>
                 <span class="i18n-en">About</span>
             </h2>
-            <p class="text-xs uppercase tracking-[0.3em] text-accent/80 mb-8">Profile</p>
-            <div class="space-y-6 text-white/60 leading-relaxed font-light text-base md:text-lg border-refined rounded-2xl p-8 md:p-10 bg-darkGray/40">
-                <p class="i18n-zh">3年央企项目经理经历：在中航工业集团雷华电子技术研究所负责某型号雷达全寿命周期售后项目管理。围绕“售后全业务域流程搭建”，打通用户信息→设计更改→质量改进的闭环，并融合质量/风险/合规要求构建流程体系，达成 AOS（流程体系全生命周期建设）铜牌标准；同时完成售后服务信息系统审查上线并多轮迭代。并在“AI项目 0-1”上从 0 到 1 搭建多 Agent 自媒体 AIGC/AI GC 系统，生产效率提升 78%。</p>
-                <p class="i18n-en">3Y+ as a State-owned Enterprise PM: at AVIC Rayhua Electronics, managed the full life-cycle after-sales program for a radar model. For “end-to-end after-sales workflows”, built a closed loop from user data → design changes → quality improvement, and integrated quality/risk/compliance requirements into the process system, achieving AOS Bronze (process lifecycle building). Also launched the after-sales information system via review and iterated based on usage needs. For “AI projects from 0 to 1”, built a multi-agent media AIGC/AI GC system from scratch, improving production efficiency by 78%.</p>
+            <p class="text-sm uppercase tracking-[0.28em] text-accent/85 mb-8">Profile</p>
+            <div class="space-y-6 text-white/65 leading-relaxed font-light text-base md:text-lg border-refined rounded-2xl p-8 md:p-10 bg-darkGray/40">
+                <ul class="i18n-zh space-y-4 list-disc pl-6 marker:text-primary/80">
+                    <li><strong class="text-white/95"><u>3年央企项目经理</u></strong>：在中航工业集团雷华电子技术研究所负责某型号雷达全寿命周期售后项目管理。</li>
+                    <li><strong class="text-white/95"><u>售后全业务域流程搭建</u></strong>：打通“用户信息 → 设计更改 → 质量改进”闭环，融合质量/风险/合规要求，达成 AOS（流程体系全生命周期建设）铜牌标准。</li>
+                    <li><strong class="text-white/95"><u>AI项目 0-1 落地</u></strong>：从 0 到 1 搭建多 Agent 自媒体 AIGC/AI GC 系统，推动生产效率<strong class="text-primary/95">提升 78%</strong>。</li>
+                </ul>
+                <ul class="i18n-en space-y-4 list-disc pl-6 marker:text-primary/80">
+                    <li><strong class="text-white/95"><u>3Y+ as an SOE Project Manager</u></strong>: led full-lifecycle after-sales management for a radar program at AVIC Rayhua Electronics.</li>
+                    <li><strong class="text-white/95"><u>End-to-end after-sales workflows</u></strong>: built the loop from user data to design changes and quality improvement, integrating quality/risk/compliance to achieve AOS Bronze.</li>
+                    <li><strong class="text-white/95"><u>AI projects from 0 to 1</u></strong>: built a multi-agent media AIGC system from scratch and increased productivity by <strong class="text-primary/95">78%</strong>.</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -278,12 +293,6 @@
                     </div>
                 </article>
             </div>
-            <div class="mt-14 md:mt-16">
-                <h3 class="text-center text-sm uppercase tracking-[0.25em] text-white/35 mb-6"><span class="i18n-zh">成果概览</span><span class="i18n-en">Impact snapshot</span></h3>
-                <div class="rounded-2xl border-refined p-4 md:p-6 bg-darkGray/20 max-w-4xl mx-auto h-72 md:h-80">
-                    <canvas id="resultsChart"></canvas>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -316,7 +325,7 @@
       文档呈现建议：正式交付与打印用 PDF（放 docs/）；需要内嵌动效或长文可读性时用 HTML（放 previews/）。
       下方链接示例：将文件放入仓库后改为真实路径，例如 docs/ai-support-competitive.pdf 与 previews/ai-support.html
     -->
-    <section id="docs" class="py-20 md:py-28 relative">
+    <section id="docs" class="hidden py-20 md:py-28 relative">
         <div class="absolute inset-0 bg-grid z-0 pointer-events-none opacity-30"></div>
         <div class="container mx-auto px-4 sm:px-6 z-10 relative">
             <div class="mb-12 md:mb-14">
@@ -597,43 +606,6 @@
         if (!prefersReducedMotion) {
             initParticles();
         }
-
-        var chartColors = {
-            c1: 'rgba(56, 189, 248, 0.78)',
-            c2: 'rgba(129, 140, 248, 0.78)',
-            c3: 'rgba(165, 180, 252, 0.65)'
-        };
-        var resultsChartCtx = document.getElementById('resultsChart').getContext('2d');
-        new Chart(resultsChartCtx, {
-            type: 'bar',
-            data: {
-                labels: ['AI 售后 / After-sales AI', 'AIGC', '信息系统 / Info system'],
-                datasets: [{
-                    label: '%',
-                    data: [45, 78, 30],
-                    backgroundColor: [chartColors.c1, chartColors.c2, chartColors.c3],
-                    borderWidth: 0,
-                    borderRadius: 4
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: 'rgba(255,255,255,0.06)' },
-                        ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 11 } }
-                    },
-                    x: {
-                        grid: { display: false },
-                        ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 10 }, maxRotation: 45, minRotation: 0 }
-                    }
-                },
-                plugins: {
-                    legend: { display: false }
-                }
-            }
-        });
 
         function fibSpherePoints(count, radius) {
             var pts = [];
